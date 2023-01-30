@@ -1,49 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putstr_fd.c                                     :+:      :+:    :+:   */
+/*   ft_lstnew.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aceralin <aceralin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/05/19 12:58:16 by aceralin          #+#    #+#             */
-/*   Updated: 2023/01/30 23:08:01 by aceralin         ###   ########.fr       */
+/*   Created: 2022/05/31 12:27:25 by aceralin          #+#    #+#             */
+/*   Updated: 2023/01/30 23:47:34 by aceralin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../Includes/so_long.h"
 
-void	ft_putstr_fd(char *s, int fd)
+t_solong	*ft_lstnew(void *extract)
 {
-	int	i;
+	t_solong	*new_element;
 
-	i = 0;
-	while (s[i] != '\0')
-	{
-		write(fd, &s[i], 1);
-		i++;
-	}
-}
-
-size_t	ft_strlen(const char *s)
-{
-	size_t	i;
-
-	if (!s)
-		return (0);
-	i = 0;
-	while (s[i] != '\0')
-		i++;
-	return (i);
-}
-
-int	ft_strcmp(char *s1, char *s2)
-{
-	int	i;
-	
-	i = 0;
-	while(s1[i] && s2[i] && (s1[i] == s2[i]))
-	{
-		i++;
-	}
-	return (s1[i]-s2[i]);
+	new_element = malloc(sizeof(t_solong));
+	if (!new_element)
+		return (NULL);
+	new_element->extract = extract;
+	new_element->next = NULL;
+	return (new_element);
 }

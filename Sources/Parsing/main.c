@@ -6,7 +6,7 @@
 /*   By: aceralin <aceralin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/27 13:20:07 by aceralin          #+#    #+#             */
-/*   Updated: 2023/01/27 18:40:42 by aceralin         ###   ########.fr       */
+/*   Updated: 2023/01/31 00:08:41 by aceralin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,57 +21,69 @@
 //Si une erreur de configuration est détectée, le programme doit quitter proprement
 //et retourner "Error\n" suivi d’un message d’erreur explicite de votre choix.
 
-size_t	ft_strlen(const char *s)
-{
-	size_t	i;
-
-	if (!s)
-		return (0);
-	i = 0;
-	while (s[i] != '\0')
-		i++;
-	return (i);
-}
-
-int	ft_arg_is_ber(const char *s1, const char *s2, size_t n)
-{
-	unsigned int	i;
-	unsigned int 	j;
-	
-	i = strlen(s1) - n ;
-	j = 0;
-	while (s1[i] != '\0' && (s1[i] == s2[j]) && (i <= strlen(s1)))
-	{
-		i++;
-		//printf("%s\n - %s\n",s1[i], s2[j]);
-	}
-	printf("%s\n",s1);
-	return ((unsigned char)s1[i] - (unsigned char)s2[j]);
-}
 /*
-int	ft_check_map(char *argv[])
+int	ft_strcmp_end(char *s, char *t)
 {
-	int	fd;
-    char	*extract;
+	if(ft_strlen(s) < ft_strlen(t))
+		return(0);
+	return()
+}*/
+
+int	ft_arg_is_not_ber(char *s1, char *extension)
+{
+	//lire a partir de la fin (dans le cas de ber.ber.ber ou toto.toto.ber)
+	int		i;
+
+	i = (int)ft_strlen(s1) - 1;
+	while(s1[i] && s1[i] != '.')
+		i--;
+	if(i <= 0)
+		return(1);
+	if(ft_strcmp(s1 + i, extension))
+		return(1);
+	return(0);
+}
+
+
+int	ft_check_map(int fd)
+{
+    t_solong	extract;
     int	i;
 	
-	 extract = "";
-	fd = open(*argv, O_RDONLY);
-	i = 0;
 	while(extract)
 	{
-    	extract = get_next_line(fd);
-		i ++;
+    	extract = ft_lstnew(get_next_line(fd));
+		if (!extract)
+			ft_exit(NULL, "Error");
+		else
+			ft_lstadd_back(extract, extract);
+
 	}
 	if (close(fd) == -1)
 		ft_exit(NULL, "Error\n");
-}*/
+}
 
 int	main(int argc, char *argv[])
 {
-	if (argc < 2)
-		ft_exit(NULL, "Error\n");
-	//int i;
+	int	fd;
+	if (argc != 2)
+		ft_exit(NULL, "Error");
+	if((ft_arg_is_not_ber(argv[1], ".ber")))
+		ft_exit(NULL,"Error: Your file is not .ber\n");
+	fd = open(argv[1], O_RDONLY);
+	if(fd == -1)
+		ft_exit(NULL, "Error to open the file\n");
+	ft_check_map(fd);
+    //recuperer la map et la lire
+    //checker si la map recu est valide (est elle bien rectangulaire, et les autres conditions)
+	
+		
+	//parsing
+     
+    
+}
+
+//int i;
 	
 	/*i = 0;
 	if(argc == 2)
@@ -82,25 +94,6 @@ int	main(int argc, char *argv[])
 			i++;
 		}
 	}*/
-	if(argv[1])	
-	{
-		if(ft_arg_is_ber(argv[1],".ber", 4))
-			ft_exit(NULL,"Error: Your file is not .ber\n");
-	}
-	//verifier si le nom du fichier est bien un .ber
-	
-    
-    //recuperer la map et la lire
-    //checker si la map recu est valide
-    
-	
-	//ft_check_map();
-		
-	//parsing
-    
-    
-}
-
 
     /*
      if (fd == -1)

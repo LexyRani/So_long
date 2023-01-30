@@ -24,6 +24,9 @@ SRCS += Sources/Utils/get_next_line/get_next_line.c
 SRCS += Sources/Utils/get_next_line/get_next_line_utils.c
 SRCS += Sources/Utils/ft_putendl_fd.c
 SRCS += Sources/Utils/ft_putstr_fd.c
+SRCS += Sources/Utils/ft_lstnew.c
+SRCS += Sources/Utils/ft_lstlast.c
+SRCS += Sources/Utils/ft_lstadd_back.c
 
 OBJS = $(SRCS:.c=.o)
 

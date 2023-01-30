@@ -6,7 +6,7 @@
 /*   By: aceralin <aceralin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/27 13:20:27 by aceralin          #+#    #+#             */
-/*   Updated: 2023/01/27 17:57:29 by aceralin         ###   ########.fr       */
+/*   Updated: 2023/01/31 00:07:50 by aceralin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,11 +25,19 @@
 #  define BUFFER_SIZE 42
 # endif
 
+typedef struct s_solong
+{
+			char	*extract;		
+
+			struct s_solong	*next;
+}						t_solong;
+
 /******************************************************************************/
 /*									PARSING	  								  */
 /******************************************************************************/
 char	*get_next_line(int fd);
-int	ft_arg_is_ber(const char *s1, const char *s2, size_t n);
+int		ft_arg_is_not_ber(char *s1, char *extension);
+int		ft_check_map(int fd);
 
 /******************************************************************************/
 /*									GET_NEXT_LINE	  						  */
@@ -56,4 +64,8 @@ size_t	ft_strlen(const char *s);
 void	ft_putchar_fd(char c, int fd);
 void	ft_putstr_fd(char *s, int fd);
 void	ft_putendl_fd(char *s, int fd);
+int		ft_strcmp(char *s1, char *s2);
+t_solong	*ft_lstnew(void *content);
+t_solong	*ft_lstlast(t_solong *lst);
+void	ft_lstadd_back(t_solong **lst, t_solong *new);
 #endif
