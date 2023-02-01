@@ -6,7 +6,7 @@
 /*   By: aceralin <aceralin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/27 13:20:27 by aceralin          #+#    #+#             */
-/*   Updated: 2023/01/31 00:07:50 by aceralin         ###   ########.fr       */
+/*   Updated: 2023/02/01 01:54:31 by aceralin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,43 +29,51 @@ typedef struct s_solong
 {
 			char	*extract;		
 
+			struct s_solong	*prev;
 			struct s_solong	*next;
 }						t_solong;
 
 /******************************************************************************/
 /*									PARSING	  								  */
 /******************************************************************************/
-char	*get_next_line(int fd);
-int		ft_arg_is_not_ber(char *s1, char *extension);
-int		ft_check_map(int fd);
-
+char		*get_next_line(int fd);
+int			ft_arg_is_not_ber(char *s1, char *extension);
+void		ft_map_is_valid(t_solong **map);
+void		ft_map_is_valid(t_solong **map);
+void 		ft_check_map(t_solong	**lst_begin, int fd);
+int			is_not_rectangle(t_solong **map);
+int			is_not_wall_framed(t_solong **map);
+int			check_middle(t_solong *map);
+int			is_all_one( t_solong *map);
 /******************************************************************************/
 /*									GET_NEXT_LINE	  						  */
 /******************************************************************************/
 
-char	*ft_copy_and_stick(char *buffer, char *line_read);
-char	*get_next_line(int fd);
-int		found_new_line(char *str);
-char	*buffer_after_new_line(char *buffer, int len_line_read);
-size_t	ft_strlen(const char *s);
-void	*ft_memcpy(void *dest, const void *src, size_t n);
+char		*ft_copy_and_stick(char *buffer, char *line_read);
+char		*get_next_line(int fd);
+int			found_new_line(char *str);
+char		*buffer_after_new_line(char *buffer, int len_line_read);
+size_t		ft_strlen(const char *s);
+void		*ft_memcpy(void *dest, const void *src, size_t n);
 
 /******************************************************************************/
 /*									ERRORS  								  */
 /******************************************************************************/
 
-void    ft_exit(char *str,char *msg);
+void   		ft_exit(t_solong *map, char *msg);
 /******************************************************************************/
 /*									UTILS	  								  */
 /******************************************************************************/
 
-size_t	ft_strlen(const char *s);
+//size_t	ft_strlen(t_solong *s);
 
-void	ft_putchar_fd(char c, int fd);
-void	ft_putstr_fd(char *s, int fd);
-void	ft_putendl_fd(char *s, int fd);
-int		ft_strcmp(char *s1, char *s2);
+void		ft_putchar_fd(char c, int fd);
+void		ft_putstr_fd(char *s, int fd);
+void		ft_putendl_fd(char *s, int fd);
+int			ft_strcmp(char *s1, char *s2);
 t_solong	*ft_lstnew(void *content);
 t_solong	*ft_lstlast(t_solong *lst);
-void	ft_lstadd_back(t_solong **lst, t_solong *new);
+void		ft_lstadd_back(t_solong **lst, t_solong *new);
+char		*ft_strdup_without_nl(const char *s);
+int			ft_lstsize(t_solong *lst);
 #endif

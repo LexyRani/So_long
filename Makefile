@@ -4,7 +4,7 @@ NAME = so_long
 
 #****************************PARSING**************************#
 SRCS += Sources/Parsing/main.c
-#SRCS += sources
+SRCS += Sources/Parsing/valid_map.c
 #SRCS += sources
 #SRCS += sources
 
@@ -36,6 +36,7 @@ HEADER += Includes/so_long.h
 #**************************Compilateurs***********************#
 CC = cc
 CFLAGS = -g -Wall -Wextra -Werror
+
 
 #*****************************RULES***************************#
 
