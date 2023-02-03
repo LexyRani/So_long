@@ -6,7 +6,7 @@
 /*   By: aceralin <aceralin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/31 14:51:30 by aceralin          #+#    #+#             */
-/*   Updated: 2023/02/01 01:16:05 by aceralin         ###   ########.fr       */
+/*   Updated: 2023/02/03 02:41:38 by aceralin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,11 +16,15 @@ void	ft_lstadd_back(t_solong **lst, t_solong *new)
 {	
 	if (*lst)
 	{
-		ft_lstlast(*lst)->next = new;
+		new->index = ft_lstlast(*lst)->index + 1;
 		new->prev = ft_lstlast(*lst);
+		ft_lstlast(*lst)->next = new;
 	}
 	else
+	{
+		new->index = 0;
 		*lst = new;
+	}	
 }
 
 int	ft_lstsize(t_solong *lst)

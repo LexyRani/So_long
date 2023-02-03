@@ -6,7 +6,7 @@
 /*   By: aceralin <aceralin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/31 21:27:43 by aceralin          #+#    #+#             */
-/*   Updated: 2023/02/01 02:07:15 by aceralin         ###   ########.fr       */
+/*   Updated: 2023/02/03 06:02:22 by aceralin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ int	is_not_rectangle(t_solong **map)
 	t_solong *tmp;
 	
 	tmp = *map;
-	while (tmp->next)
+	while (tmp && tmp->next)
 	{
 		if(ft_strlen(tmp->extract) != ft_strlen(tmp->next->extract))
 			return (1);
@@ -30,7 +30,7 @@ int	is_all_one( t_solong *map)
 {
 	int i;
 	i = 0;
-	printf("%s\n", map->extract);
+	//printf("%s\n", map->extract);
 	while(map->extract[i])
 	{
 		if(map->extract[i] != '1')
@@ -75,18 +75,21 @@ int	is_not_wall_framed(t_solong **map)
 	return(0);
 }
 
-// int	is_not_valid_path(t_solong **map)
-// {
-	
-// }
-
 void	ft_map_is_valid(t_solong **map)
 {
+	t_map  count;
+	
+	count.c = 0;
+	count.e = 0;
+	count.p = 0;
+	if(*map == NULL)
+		ft_exit(NULL, "Error: map is empty");
 	if(is_not_rectangle(map))
 		ft_exit(*map, "Error: map is not rectangle");
 	if(is_not_wall_framed(map))
-	 	ft_exit(*map, "Error: map is missng wall");
-	// if(is_not_valid_path(*map)) //backtracking
-	// 	ft_exit(map, "Error: map is not a valid path");
-	
+	 	ft_exit(*map, "Error: map is missing wall");
+	is_not_valid_count(map, &count);
+	if(is_not_valid_path(map, &count))
+		ft_exit(*map, "Error: map is not a valid path");
+	printf("good map");
 }

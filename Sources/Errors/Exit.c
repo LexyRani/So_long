@@ -6,7 +6,7 @@
 /*   By: aceralin <aceralin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/27 15:11:39 by aceralin          #+#    #+#             */
-/*   Updated: 2023/02/01 00:19:43 by aceralin         ###   ########.fr       */
+/*   Updated: 2023/02/03 05:51:29 by aceralin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 void	ft_exit(t_solong *map,char *msg)
 {
 	t_solong	*tmp;
-
+	
 	while (map)
 	{
 		tmp = map;
@@ -23,7 +23,7 @@ void	ft_exit(t_solong *map,char *msg)
 		free(tmp->extract);
 		free(tmp);
 	}
-	(void) map;
+	//(void) map;
 	if(msg)
 		ft_putendl_fd(msg, 2);
 	exit(EXIT_FAILURE);

@@ -5,7 +5,7 @@ NAME = so_long
 #****************************PARSING**************************#
 SRCS += Sources/Parsing/main.c
 SRCS += Sources/Parsing/valid_map.c
-#SRCS += sources
+SRCS += Sources/Parsing/valid_path.c
 #SRCS += sources
 
 #****************************MOVE*****************************#

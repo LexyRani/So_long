@@ -6,7 +6,7 @@
 /*   By: aceralin <aceralin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/27 13:20:27 by aceralin          #+#    #+#             */
-/*   Updated: 2023/02/01 01:54:31 by aceralin         ###   ########.fr       */
+/*   Updated: 2023/02/03 06:21:25 by aceralin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,10 +25,18 @@
 #  define BUFFER_SIZE 42
 # endif
 
+typedef struct s_map
+{
+			int	p; //compteur 
+			int	e; //compteur
+			int	c; //compteur
+			
+}			t_map; 
+
 typedef struct s_solong
 {
-			char	*extract;		
-
+			char	*extract;
+			int		index;		
 			struct s_solong	*prev;
 			struct s_solong	*next;
 }						t_solong;
@@ -36,15 +44,25 @@ typedef struct s_solong
 /******************************************************************************/
 /*									PARSING	  								  */
 /******************************************************************************/
-char		*get_next_line(int fd);
+/*________/MAIN\________*/
 int			ft_arg_is_not_ber(char *s1, char *extension);
-void		ft_map_is_valid(t_solong **map);
-void		ft_map_is_valid(t_solong **map);
 void 		ft_check_map(t_solong	**lst_begin, int fd);
+					
+/*_____/VALID MAP\______*/
+void		ft_map_is_valid(t_solong **map);
 int			is_not_rectangle(t_solong **map);
 int			is_not_wall_framed(t_solong **map);
 int			check_middle(t_solong *map);
 int			is_all_one( t_solong *map);
+
+/*______/VALID MAP\_____*/
+int			is_not_valid_path(t_solong **map, t_map *count);
+void		is_not_valid_count(t_solong **map, t_map *count);
+void		ft_init_count(t_map	count);
+int			change_nextp(t_solong *map, t_map *count, int i);
+int			change_c_to_p_np(t_solong *map, t_map *count, int i, char c);
+int			change_c_to_p_i(t_solong *map, t_map *count, int i,char c);
+
 /******************************************************************************/
 /*									GET_NEXT_LINE	  						  */
 /******************************************************************************/
@@ -64,8 +82,6 @@ void   		ft_exit(t_solong *map, char *msg);
 /******************************************************************************/
 /*									UTILS	  								  */
 /******************************************************************************/
-
-//size_t	ft_strlen(t_solong *s);
 
 void		ft_putchar_fd(char c, int fd);
 void		ft_putstr_fd(char *s, int fd);
