@@ -6,7 +6,7 @@
 /*   By: aceralin <aceralin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/27 13:20:27 by aceralin          #+#    #+#             */
-/*   Updated: 2023/02/03 06:21:25 by aceralin         ###   ########.fr       */
+/*   Updated: 2023/02/06 20:10:19 by aceralin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,8 @@
 #include <unistd.h>
 #include <stdlib.h>
 #include <string.h>
+#include "../mlx/mlx.h"
+
 /* BUFFER*/
 # ifndef BUFFER_SIZE
 #  define BUFFER_SIZE 42
@@ -62,7 +64,7 @@ void		ft_init_count(t_map	count);
 int			change_nextp(t_solong *map, t_map *count, int i);
 int			change_c_to_p_np(t_solong *map, t_map *count, int i, char c);
 int			change_c_to_p_i(t_solong *map, t_map *count, int i,char c);
-
+t_map 		*is_what_kind(char tmp, t_solong **map, t_map * count);
 /******************************************************************************/
 /*									GET_NEXT_LINE	  						  */
 /******************************************************************************/
@@ -92,4 +94,6 @@ t_solong	*ft_lstlast(t_solong *lst);
 void		ft_lstadd_back(t_solong **lst, t_solong *new);
 char		*ft_strdup_without_nl(const char *s);
 int			ft_lstsize(t_solong *lst);
+
+
 #endif

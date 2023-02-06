@@ -6,7 +6,7 @@
 /*   By: aceralin <aceralin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/27 13:20:07 by aceralin          #+#    #+#             */
-/*   Updated: 2023/02/03 06:18:20 by aceralin         ###   ########.fr       */
+/*   Updated: 2023/02/06 21:07:53 by aceralin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,13 @@ int	main(int argc, char *argv[])
 	t_solong	*lst;
 	int	fd;
 
+	void *mlx_ptr;
+	void *win_ptr;
+
+	mlx_ptr = mlx_init();
+	win_ptr = mlx_new_window(mlx_ptr, 500, 500, "COUCOU JE SUIS MOCHE <3");
+	mlx_loop(mlx_ptr);
+	
 	lst = NULL;
 	map = &lst;
 	if (argc != 2)

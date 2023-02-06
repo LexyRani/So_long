@@ -1,5 +1,6 @@
 NAME = so_long
-
+MLX_DIR = mlx
+MLX_LIB = mlx_Linux
 #Sources
 
 #****************************PARSING**************************#
@@ -41,14 +42,16 @@ CFLAGS = -g -Wall -Wextra -Werror
 #*****************************RULES***************************#
 
 all: $(NAME)
-$(NAME): $(OBJS) $(HEADER)
-		${CC} ${SRCS} -o ${NAME} ${CFLAGS} ${INCLUDES_DIR}
 
+$(NAME): $(OBJS) $(HEADER)
+		$(MAKE) -C $(MLX_DIR)
+		${CC} ${CFLAGS} ${SRCS} -I mlx -Lmlx -lmlx -lm -lXext -lX11 -o ${NAME} 
 %.o: %.c $(HEADER)
-	$(CC) -o $@ -c $< $(CFLAGS) $(INCLUDES_DIR)
+	$(CC) $(CFLAGS) -I $(MLX_DIR) -o $@ -c $< 
 
 clean:
 		rm -f $(OBJS)
+		$(MAKE) clean -C $(MLX_DIR)
 
 fclean: clean
 		rm -f $(NAME)
