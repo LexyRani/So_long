@@ -1,0 +1,5 @@
+//verifier si la carte fait plus de 3*3??
+//verifier si dans la map il y a bien des P/ C/ E/ et les compter
+//fonction qui compte les mouvs et verifie si le personnage est bloquee par un mur
+//decrementer ou incremente le E dans le cas ou le pesonnage passe dessus
+// sans avoir collecte tous les C
