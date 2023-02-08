@@ -6,7 +6,7 @@
 /*   By: aceralin <aceralin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/27 13:20:27 by aceralin          #+#    #+#             */
-/*   Updated: 2023/02/06 20:10:19 by aceralin         ###   ########.fr       */
+/*   Updated: 2023/02/08 15:35:49 by aceralin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,16 @@
 # ifndef BUFFER_SIZE
 #  define BUFFER_SIZE 42
 # endif
+typedef struct s_data
+{
+			
+			char	*addr;
+			int		bits_per_pixel;
+			int		line_lenght;
+			int		endian;			
+}				t_data;
+
+
 
 typedef struct s_map
 {
@@ -42,6 +52,15 @@ typedef struct s_solong
 			struct s_solong	*prev;
 			struct s_solong	*next;
 }						t_solong;
+
+
+typedef struct s_mlxa
+{
+	//t_solong	**map;
+	void	*mlx_ptr;
+	void	*win_ptr;
+	void	*img;
+} 			t_mlxa;
 
 /******************************************************************************/
 /*									PARSING	  								  */

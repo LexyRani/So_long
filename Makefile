@@ -9,11 +9,6 @@ SRCS += Sources/Parsing/valid_map.c
 SRCS += Sources/Parsing/valid_path.c
 #SRCS += sources
 
-#****************************MOVE*****************************#
-#SRCS += sources
-#SRCS += sources
-#SRCS += sources
-#SRCS += sources
 
 #***************************Errors****************************#
 #SRCS += sources
@@ -40,8 +35,14 @@ CFLAGS = -g -Wall -Wextra -Werror
 
 
 #*****************************RULES***************************#
+### COLORS ###
+NOC         = \033[0m
+GREEN       = \033[1;32m
+CYAN        = \033[1;36m
+YELLOW		= \033[0;33m
+BACK_WHITE  = \033[0;47;30m
 
-all: $(NAME)
+all:  $(NAME) header
 
 $(NAME): $(OBJS) $(HEADER)
 		$(MAKE) -C $(MLX_DIR)
@@ -59,4 +60,21 @@ fclean: clean
 
 re: fclean all
 
+header:
+	clear
+	@echo " $(CYAN) $$HEADER_PROJECT $(NOC)" 
+
 .PHONY: all clean fclean re
+
+define HEADER_PROJECT                                                                       
+
+                    888                            
+ dP"Y  e88 88e      888  e88 88e  888 8e   e88 888 
+C88b  d888 888b     888 d888 888b 888 88b d888 888 
+ Y88D Y888 888P     888 Y888 888P 888 888 Y888 888 
+d,dP   "88 88"      888  "88 88"  888 888  "88 888 
+                888                         ,  88P 
+                                           "8",P"  
+                                                     
+endef
+export HEADER_PROJECT

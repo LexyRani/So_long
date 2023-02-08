@@ -6,7 +6,7 @@
 /*   By: aceralin <aceralin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/02 13:44:45 by aceralin          #+#    #+#             */
-/*   Updated: 2023/02/06 18:30:00 by aceralin         ###   ########.fr       */
+/*   Updated: 2023/02/08 11:31:35 by aceralin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ t_map	*is_what_kind(char tmp, t_solong **map, t_map *count)
 	{
 		count->p++;
 		if (count->p > 1)
-			ft_exit(*map, "Error: too many Player in the map");
+			ft_exit(*map, "Error: map is not a valid path");
 	}
 	if (tmp == 'C')
 		count->c++;
@@ -33,7 +33,7 @@ t_map	*is_what_kind(char tmp, t_solong **map, t_map *count)
 	{
 		count->e++;
 		if (count->e > 1)
-			ft_exit(*map, "Error: too many Exit in the map");
+			ft_exit(*map, "Error: map is not a valid path");
 	}
 	return (count);
 }
@@ -55,11 +55,11 @@ void	is_not_valid_count(t_solong **map, t_map *count)
 		tmp = tmp->next;
 	}
 	if (count->c <= 0)
-		ft_exit(*map, " Too few coin in the map");
+		ft_exit(*map, "Error: map is not a valid path");
 	if (count->p == 0)
-		ft_exit(*map, "Error: No Player in the map");
+		ft_exit(*map, "Error: map is not a valid path");
 	if (count->e == 0)
-		ft_exit(*map, "Error: No exit in the map");
+		ft_exit(*map, "Error: map is not a valid path");
 }
 
 int	change_c_to_p_i(t_solong *map, t_map *count, int i, char c)

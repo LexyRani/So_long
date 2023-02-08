@@ -6,7 +6,7 @@
 /*   By: aceralin <aceralin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/31 21:27:43 by aceralin          #+#    #+#             */
-/*   Updated: 2023/02/03 06:02:22 by aceralin         ###   ########.fr       */
+/*   Updated: 2023/02/08 13:04:58 by aceralin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,7 +78,7 @@ int	is_not_wall_framed(t_solong **map)
 void	ft_map_is_valid(t_solong **map)
 {
 	t_map  count;
-	
+
 	count.c = 0;
 	count.e = 0;
 	count.p = 0;
