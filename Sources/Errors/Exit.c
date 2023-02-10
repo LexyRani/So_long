@@ -6,15 +6,15 @@
 /*   By: aceralin <aceralin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/27 15:11:39 by aceralin          #+#    #+#             */
-/*   Updated: 2023/02/03 05:51:29 by aceralin         ###   ########.fr       */
+/*   Updated: 2023/02/10 18:28:28 by aceralin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../Includes/so_long.h"
 
-void	ft_exit(t_solong *map,char *msg)
+void	ft_exit(t_map *map,char *msg)
 {
-	t_solong	*tmp;
+	t_map	*tmp;
 	
 	while (map)
 	{
@@ -28,3 +28,20 @@ void	ft_exit(t_solong *map,char *msg)
 		ft_putendl_fd(msg, 2);
 	exit(EXIT_FAILURE);
 }
+
+int	ft_close(t_game *game)
+{
+	// (void) map;
+
+	
+		//mlx_loop_end(game->mlx_ptr);
+		//if(game->mlx_ptr && game->img_coin)
+		
+		// mlx_destroy_image(game->mlx_ptr, game->img_coin);
+		// mlx_destroy_window(game->mlx_ptr, game->win_ptr);
+		mlx_destroy_display(game->mlx_ptr);
+		exit(EXIT_SUCCESS);
+
+		return 0;
+}
+//ft_close fermer les processus minilibx

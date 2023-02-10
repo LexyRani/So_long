@@ -7,7 +7,9 @@ MLX_LIB = mlx_Linux
 SRCS += Sources/Parsing/main.c
 SRCS += Sources/Parsing/valid_map.c
 SRCS += Sources/Parsing/valid_path.c
-#SRCS += sources
+
+
+SRCS += Sources/Game/game.c
 
 
 #***************************Errors****************************#
@@ -31,7 +33,7 @@ HEADER += Includes/so_long.h
 
 #**************************Compilateurs***********************#
 CC = cc
-CFLAGS = -g -Wall -Wextra -Werror
+CFLAGS = -g -Wall -Wextra -Werror #-fsanitize=address
 
 
 #*****************************RULES***************************#

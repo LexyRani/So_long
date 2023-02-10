@@ -6,7 +6,7 @@
 /*   By: aceralin <aceralin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/31 12:27:25 by aceralin          #+#    #+#             */
-/*   Updated: 2023/02/01 01:11:49 by aceralin         ###   ########.fr       */
+/*   Updated: 2023/02/09 13:39:27 by aceralin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,11 +34,11 @@ char	*ft_strdup_without_nl(const char *s)
 	return (str);
 }
 
-t_solong	*ft_lstnew(void *extract)
+t_map	*ft_lstnew(void *extract)
 {
-	t_solong	*new_element;
+	t_map	*new_element;
 
-	new_element = malloc(sizeof(t_solong));
+	new_element = malloc(sizeof(t_map));
 	if (!new_element)
 		return (NULL);
 	new_element->extract = ft_strdup_without_nl(extract);

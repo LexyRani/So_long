@@ -6,15 +6,15 @@
 /*   By: aceralin <aceralin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/31 21:27:43 by aceralin          #+#    #+#             */
-/*   Updated: 2023/02/08 13:04:58 by aceralin         ###   ########.fr       */
+/*   Updated: 2023/02/09 13:33:12 by aceralin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../Includes/so_long.h"
 
-int	is_not_rectangle(t_solong **map)
+int	is_not_rectangle(t_map **map)
 {
-	t_solong *tmp;
+	t_map *tmp;
 	
 	tmp = *map;
 	while (tmp && tmp->next)
@@ -26,7 +26,7 @@ int	is_not_rectangle(t_solong **map)
 	return(0);
 }
 
-int	is_all_one( t_solong *map)
+int	is_all_one( t_map *map)
 {
 	int i;
 	i = 0;
@@ -40,7 +40,7 @@ int	is_all_one( t_solong *map)
 	return(1);
 }
 
-int	check_middle(t_solong *map)
+int	check_middle(t_map *map)
 {
 	int	i;
 
@@ -50,10 +50,10 @@ int	check_middle(t_solong *map)
 	return(0);
 }
 
-int	is_not_wall_framed(t_solong **map)
+int	is_not_wall_framed(t_map **map)
 {
 	int	y;
-	t_solong *tmp;
+	t_map *tmp;
 	int i;
 	
 	i = 0;
@@ -75,9 +75,9 @@ int	is_not_wall_framed(t_solong **map)
 	return(0);
 }
 
-void	ft_map_is_valid(t_solong **map)
+void	ft_map_is_valid(t_map **map)
 {
-	t_map  count;
+	t_count  count;
 
 	count.c = 0;
 	count.e = 0;

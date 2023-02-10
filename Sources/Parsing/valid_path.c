@@ -6,20 +6,20 @@
 /*   By: aceralin <aceralin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/02 13:44:45 by aceralin          #+#    #+#             */
-/*   Updated: 2023/02/08 11:31:35 by aceralin         ###   ########.fr       */
+/*   Updated: 2023/02/09 13:34:32 by aceralin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../Includes/so_long.h"
 
-void	ft_init_count(t_map	count)
+void	ft_init_count(t_count	count)
 {
 	count.c = 0;
 	count.e = 0;
 	count.p = 0;
 }
 
-t_map	*is_what_kind(char tmp, t_solong **map, t_map *count)
+t_count	*is_what_kind(char tmp, t_map **map, t_count *count)
 {
 	if (tmp == 'P')
 	{
@@ -38,9 +38,9 @@ t_map	*is_what_kind(char tmp, t_solong **map, t_map *count)
 	return (count);
 }
 
-void	is_not_valid_count(t_solong **map, t_map *count)
+void	is_not_valid_count(t_map **map, t_count *count)
 {
-	t_solong	*tmp;
+	t_map	*tmp;
 	int			i;
 
 	tmp = *map;
@@ -62,7 +62,7 @@ void	is_not_valid_count(t_solong **map, t_map *count)
 		ft_exit(*map, "Error: map is not a valid path");
 }
 
-int	change_c_to_p_i(t_solong *map, t_map *count, int i, char c)
+int	change_c_to_p_i(t_map *map, t_count *count, int i, char c)
 {
 	int	check;
 
@@ -88,7 +88,7 @@ int	change_c_to_p_i(t_solong *map, t_map *count, int i, char c)
 	return (check);
 }
 
-int	change_c_to_p_np(t_solong *map, t_map *count, int i, char c)
+int	change_c_to_p_np(t_map *map, t_count *count, int i, char c)
 {
 	int	check;
 
@@ -114,7 +114,7 @@ int	change_c_to_p_np(t_solong *map, t_map *count, int i, char c)
 	return (check);
 }
 
-int	change_nextp(t_solong *map, t_map *count, int i)
+int	change_nextp(t_map *map, t_count *count, int i)
 {
 	int	check;
 
@@ -130,9 +130,9 @@ int	change_nextp(t_solong *map, t_map *count, int i)
 	return (1);
 }
 
-int	is_not_valid_path(t_solong **map, t_map *count)
+int	is_not_valid_path(t_map **map, t_count *count)
 {
-	t_solong	*tmp;
+	t_map	*tmp;
 	int			i;
 	int			change;
 

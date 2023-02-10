@@ -6,13 +6,13 @@
 /*   By: aceralin <aceralin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/31 14:51:30 by aceralin          #+#    #+#             */
-/*   Updated: 2023/02/03 02:41:38 by aceralin         ###   ########.fr       */
+/*   Updated: 2023/02/09 13:41:15 by aceralin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../Includes/so_long.h"
 
-void	ft_lstadd_back(t_solong **lst, t_solong *new)
+void	ft_lstadd_back(t_map **lst, t_map *new)
 {	
 	if (*lst)
 	{
@@ -27,10 +27,10 @@ void	ft_lstadd_back(t_solong **lst, t_solong *new)
 	}	
 }
 
-int	ft_lstsize(t_solong *lst)
+int	ft_lstsize(t_map*lst)
 {
 	int		i;
-	t_solong	*tmp;
+	t_map	*tmp;
 
 	tmp = lst;
 	i = 0;

@@ -6,13 +6,13 @@
 /*   By: aceralin <aceralin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/31 14:51:54 by aceralin          #+#    #+#             */
-/*   Updated: 2023/01/30 23:43:54 by aceralin         ###   ########.fr       */
+/*   Updated: 2023/02/09 13:40:18 by aceralin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../Includes/so_long.h"
 
-t_solong	*ft_lstlast(t_solong *lst)
+t_map	*ft_lstlast(t_map *lst)
 {
 	if (!lst)
 		return (NULL);
