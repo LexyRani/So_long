@@ -6,7 +6,7 @@
 /*   By: aceralin <aceralin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/02 13:44:45 by aceralin          #+#    #+#             */
-/*   Updated: 2023/02/09 13:34:32 by aceralin         ###   ########.fr       */
+/*   Updated: 2023/02/11 20:04:10 by aceralin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -129,6 +129,15 @@ int	change_nextp(t_map *map, t_count *count, int i)
 		return (0);
 	return (1);
 }
+
+
+/* t_map	*map_copy(t_map	*src)
+{
+	t_map	*head;
+
+	head = 
+	return (NULL);
+} */
 
 int	is_not_valid_path(t_map **map, t_count *count)
 {

@@ -6,7 +6,7 @@
 /*   By: aceralin <aceralin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/27 13:20:27 by aceralin          #+#    #+#             */
-/*   Updated: 2023/02/10 18:08:31 by aceralin         ###   ########.fr       */
+/*   Updated: 2023/02/11 20:02:50 by aceralin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ typedef struct s_count // compteur
 typedef struct s_map //map
 {
 			char	*extract;
-			int		index;		
+			int		index;
 			struct s_map	*prev;
 			struct s_map	*next;
 }						t_map;
@@ -55,15 +55,16 @@ typedef struct s_map //map
 
 typedef struct s_game //game
 {
-	//t_solong	**map;
+	t_map	*head_map;
+	// t_map	**map;
 	void	*mlx_ptr;
 	void	*win_ptr;
 	void	*img;
-//	void	*img_wall;
-//	void	*img_floor;
+	void	*img_wall;
+	void	*img_floor;
 	void	*img_coin;
-//	void	*img_player;
-//	void	*img_exit;
+	void	*img_player;
+	void	*img_exit;
 } 			t_game;
 
 /******************************************************************************/
@@ -71,7 +72,7 @@ typedef struct s_game //game
 /******************************************************************************/
 /*________/MAIN\________*/
 int			ft_arg_is_not_ber(char *s1, char *extension);
-void 		ft_check_map(t_map	**lst_begin, int fd);
+void		ft_check_map(t_game *game, t_map **map, int fd);
 					
 /*_____/VALID MAP\______*/
 void		ft_map_is_valid(t_map **map);
@@ -120,9 +121,12 @@ char		*ft_strdup_without_nl(const char *s);
 int			ft_lstsize(t_map *lst);
 
 /******************************************************************************/
-/*									UTILS	  								  */
+/*									GAME	  								  */
 /******************************************************************************/
 
-void    display_the_map(t_game *game, t_map **map);
+int		print_map(t_map *tmp);
 void	image_init(t_game *game);
+void	display_init(t_game *game);
+void	put_images(t_game *game, t_map **map);
+void    display_the_map(t_game *game, t_map **map);
 #endif
