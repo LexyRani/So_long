@@ -6,7 +6,7 @@
 /*   By: aceralin <aceralin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/27 13:20:27 by aceralin          #+#    #+#             */
-/*   Updated: 2023/02/11 20:02:50 by aceralin         ###   ########.fr       */
+/*   Updated: 2023/02/11 21:15:06 by aceralin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,7 @@ typedef struct s_map //map
 typedef struct s_game //game
 {
 	t_map	*head_map;
+	t_map	*head_map_cp;//Parsing copy_map
 	// t_map	**map;
 	void	*mlx_ptr;
 	void	*win_ptr;
@@ -73,22 +74,22 @@ typedef struct s_game //game
 /*________/MAIN\________*/
 int			ft_arg_is_not_ber(char *s1, char *extension);
 void		ft_check_map(t_game *game, t_map **map, int fd);
-					
+
 /*_____/VALID MAP\______*/
-void		ft_map_is_valid(t_map **map);
+void		ft_map_is_valid(t_game *game, t_map **map);
 int			is_not_rectangle(t_map **map);
 int			is_not_wall_framed(t_map **map);
 int			check_middle(t_map *map);
 int			is_all_one( t_map *map);
 
 /*______/VALID MAP\_____*/
-int			is_not_valid_path(t_map **map, t_count *count);
-void		is_not_valid_count(t_map **map, t_count *count);
 void		ft_init_count(t_count	count);
+void		is_not_valid_count(t_map **map, t_count *count);
 int			change_nextp(t_map *map, t_count *count, int i);
-int			change_c_to_p_np(t_map *map, t_count *count, int i, char c);
-int			change_c_to_p_i(t_map *map, t_count *count, int i,char c);
 t_count 	*is_what_kind(char tmp, t_map **map, t_count *count);
+int			change_c_to_p_i(t_map *map, t_count *count, int i,char c);
+int			change_c_to_p_np(t_map *map, t_count *count, int i, char c);
+int			is_not_valid_path(t_game *game, t_map **map, t_count *count);
 /******************************************************************************/
 /*									GET_NEXT_LINE	  						  */
 /******************************************************************************/
@@ -104,8 +105,10 @@ void		*ft_memcpy(void *dest, const void *src, size_t n);
 /*									ERRORS  								  */
 /******************************************************************************/
 
-void   		ft_exit(t_map *map, char *msg);
+void		free_map(t_map *map);
+int			free_game(t_game *game);
 int			ft_close(t_game *s_game);
+void   		ft_exit(t_map *map, char *msg);
 /******************************************************************************/
 /*									UTILS	  								  */
 /******************************************************************************/

@@ -6,7 +6,7 @@
 /*   By: aceralin <aceralin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/09 14:40:38 by aceralin          #+#    #+#             */
-/*   Updated: 2023/02/11 19:48:32 by aceralin         ###   ########.fr       */
+/*   Updated: 2023/02/11 20:34:58 by aceralin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,7 +74,7 @@ void	put_images(t_game *game, t_map **map)
 	i = 0;
 
 	tmp = *map;
-	tmp ->index = 0;
+	tmp->index = 0;
 	while(tmp)
 	{
 		printf("%c\n", (*map)->extract[i]);

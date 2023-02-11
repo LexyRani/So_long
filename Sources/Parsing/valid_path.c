@@ -6,7 +6,7 @@
 /*   By: aceralin <aceralin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/02 13:44:45 by aceralin          #+#    #+#             */
-/*   Updated: 2023/02/11 20:04:10 by aceralin         ###   ########.fr       */
+/*   Updated: 2023/02/11 21:10:33 by aceralin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -131,21 +131,67 @@ int	change_nextp(t_map *map, t_count *count, int i)
 }
 
 
-/* t_map	*map_copy(t_map	*src)
+char	*new_str(char *src)
+{
+	char	*new;
+	int		i;
+
+	i = ft_strlen(src);
+	new = malloc(sizeof(char) * (i + 1));
+	if (!new)
+		return (NULL);
+	i = 0;
+	while (src[i])
+	{
+		new[i] = src[i];
+		i++;
+	}
+	new[i] = '\0';
+	return (new);
+}
+
+t_map	*map_copy(t_game *game, t_map *src)
 {
 	t_map	*head;
+	t_map	*map_cp;
+	t_map	*prev;
 
-	head = 
+	prev = src->prev;
+	map_cp = malloc(sizeof(t_map));
+	if (!map_cp)
+		return (NULL);
+	head = map_cp;
+	game->head_map_cp = head;
+	while (src)
+	{
+		map_cp->extract = new_str(src->extract);
+		if (!src->next)
+		{
+			map_cp->next = NULL;
+			map_cp->prev = prev;
+			src = game->head_map;
+			map_cp = head;
+			return (map_cp);
+		}
+		map_cp->next = malloc(sizeof(t_map));
+		if (!map_cp->next)
+			return (0);
+		map_cp->prev = prev;
+		map_cp = map_cp->next;
+		prev = src;
+		src = src->next;
+	}
 	return (NULL);
-} */
+}
 
-int	is_not_valid_path(t_map **map, t_count *count)
+int	is_not_valid_path(t_game *game, t_map **map, t_count *count)
 {
 	t_map	*tmp;
 	int			i;
 	int			change;
 
-	tmp = *map;
+	// tmp = *map;
+	tmp = map_copy(game, *map);
 	while (tmp)
 	{
 		i = 0;
@@ -156,18 +202,18 @@ int	is_not_valid_path(t_map **map, t_count *count)
 			i++;
 		}
 		if (count->c == 0 && count->e == 0)
-			return (0);
+			return (tmp = game->head_map_cp, free_map(tmp), 0);
 		if (tmp->next == NULL)
 		{
 			if (change == 0)
-				return (1);
+				return (tmp = game->head_map_cp, free_map(tmp), 1);
 			else
 				change = 0;
-			tmp = *map;                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            
+			tmp = *map;                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            
 		}
 		tmp = tmp->next;
 	}
-	return (0);
+	return (tmp = game->head_map_cp, free_map(tmp), 0);
 }
 
 /*

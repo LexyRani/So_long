@@ -6,14 +6,14 @@
 /*   By: aceralin <aceralin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/31 14:51:30 by aceralin          #+#    #+#             */
-/*   Updated: 2023/02/09 13:41:15 by aceralin         ###   ########.fr       */
+/*   Updated: 2023/02/11 20:30:24 by aceralin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../Includes/so_long.h"
 
 void	ft_lstadd_back(t_map **lst, t_map *new)
-{	
+{
 	if (*lst)
 	{
 		new->index = ft_lstlast(*lst)->index + 1;

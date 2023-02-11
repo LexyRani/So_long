@@ -6,7 +6,7 @@
 /*   By: aceralin <aceralin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/27 13:20:07 by aceralin          #+#    #+#             */
-/*   Updated: 2023/02/11 20:02:19 by aceralin         ###   ########.fr       */
+/*   Updated: 2023/02/11 21:10:42 by aceralin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,6 @@ void	ft_file_to_image(void *mlx_ptr)
 {
 	void *img;
 	char	*img_path;
-	
-	
 }*/
 
 
@@ -58,13 +56,14 @@ void 	ft_check_map(t_game *game, t_map **map, int fd)
 int	main(int argc, char *argv[])
 {
 	t_map	**map;
-	t_map	*lst;
 	int			fd;
-	t_game		*game = NULL;
-	game = (void *) malloc(sizeof(t_game));
+	t_game		*game;
+	t_map		*lst;
+
+	game = (void *)malloc(sizeof(t_game));
 	lst = NULL;
-	map = /* &lst */NULL;
-	game->img_coin =  0;
+	map = &lst;
+	game->img_coin = 0;
 	if (argc != 2)
 		ft_exit(NULL, "Error");
 	if((ft_arg_is_not_ber(argv[1], ".ber")))
@@ -73,9 +72,10 @@ int	main(int argc, char *argv[])
 	if(fd == -1)
 		ft_exit(NULL, "Error to open the file");
 	ft_check_map(game, map, fd);
-	ft_map_is_valid(map);
+	ft_map_is_valid(game, map);
 	display_the_map(game, map);
-	free(game);
+	free_game(game);
+	dprintf(1, "%s\n", "--- EXITED HERE ---\n");
 	ft_exit(*map,"");
 }
 

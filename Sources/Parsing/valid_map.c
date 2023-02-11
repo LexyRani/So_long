@@ -6,7 +6,7 @@
 /*   By: aceralin <aceralin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/31 21:27:43 by aceralin          #+#    #+#             */
-/*   Updated: 2023/02/11 19:50:47 by aceralin         ###   ########.fr       */
+/*   Updated: 2023/02/11 20:43:48 by aceralin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,7 +75,7 @@ int	is_not_wall_framed(t_map **map)
 	return(0);
 }
 
-void	ft_map_is_valid(t_map **map)
+void	ft_map_is_valid(t_game *game, t_map **map)
 {
 	t_count  count;
 
@@ -89,7 +89,8 @@ void	ft_map_is_valid(t_map **map)
 	if(is_not_wall_framed(map))
 	 	ft_exit(*map, "Error: map is missing wall");
 	is_not_valid_count(map, &count);
-	if(is_not_valid_path(map, &count))
+	if(is_not_valid_path(game, map, &count))
 		ft_exit(*map, "Error: map is not a valid path");
 	printf("good map");
+	print_map(*map);
 }
