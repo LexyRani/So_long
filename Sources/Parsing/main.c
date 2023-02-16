@@ -6,7 +6,7 @@
 /*   By: aceralin <aceralin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/27 13:20:07 by aceralin          #+#    #+#             */
-/*   Updated: 2023/02/15 14:08:37 by aceralin         ###   ########.fr       */
+/*   Updated: 2023/02/16 14:43:00 by aceralin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,7 +73,7 @@ int	main(int argc, char *argv[])
 		ft_exit(NULL, "Error to open the file");
 	ft_check_map(game, map, fd);
 	ft_map_is_valid(game, map);
-	//display_the_map(game, map);
+	display_the_map(game);
 	free_game(game);
 	dprintf(1, "%s\n", "--- EXITED HERE ---\n");
 	ft_exit(*map,"");

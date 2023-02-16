@@ -6,7 +6,7 @@
 /*   By: aceralin <aceralin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/02 13:44:45 by aceralin          #+#    #+#             */
-/*   Updated: 2023/02/16 01:06:45 by aceralin         ###   ########.fr       */
+/*   Updated: 2023/02/16 23:03:59 by aceralin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@
 	count.p = 0;
 }*/
 
-static void print_double_array(char **array)
+void print_double_array(char **array)
 {
 	int i = 0;
 	if (!*array)
