@@ -6,12 +6,12 @@
 /*   By: aceralin <aceralin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/09 14:40:38 by aceralin          #+#    #+#             */
-/*   Updated: 2023/02/11 20:34:58 by aceralin         ###   ########.fr       */
+/*   Updated: 2023/02/15 14:13:28 by aceralin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../Includes/so_long.h"
-
+/*
 void	*ft_convert_to_img(char *img, t_game *data)
 {
 	void	*img_ptr;
@@ -38,20 +38,25 @@ void	image_init(t_game *data)
 }
 
 
-/*void	image_init(t_game *game)
+void	image_init(t_game *game)
 {
 	int len  = 23;
 	int width = 3;
 	game->img_coin = mlx_xpm_file_to_image(game->mlx_ptr, "../Images/dollar.xpm",  &width, &len );
-}*/
+}
 
 void	display_init(t_game *game)
 {
 	game->mlx_ptr = NULL;
 	game->img = NULL ;
-	game->win_ptr = NULL;	
+	game->win_ptr = NULL;
+	game->img_coin = 0;
+	game->img_exit = 0;
+	game->img_floor = 0;
+	game->img_player = 0;
+	game->img_wall = 0;
 }
-
+*/
 int	print_map(t_map *tmp)
 {
 	t_map	*head;
@@ -59,13 +64,13 @@ int	print_map(t_map *tmp)
 	head = tmp;
 	while (tmp)
 	{
-		dprintf(2, "%s\n", tmp->extract);
+		dprintf(2, "%s\n", tmp->line);
 		tmp = tmp->next;
 	}
 	tmp = head;	
 	return (1);
 }
-
+/*
 void	put_images(t_game *game, t_map **map)
 {
 	int		i;
@@ -75,19 +80,23 @@ void	put_images(t_game *game, t_map **map)
 
 	tmp = *map;
 	tmp->index = 0;
+	int x;
+	int y;
+
+	x = 0;
+	y = 0;
 	while(tmp)
 	{
 		printf("%c\n", (*map)->extract[i]);
 		while(tmp->extract[i])
 	 	{
-			printf("ici\n");
 	 		if(tmp->extract[i] == '1')
 			{
 				printf("%d - %d\n", tmp->extract[i], tmp->index);
-				mlx_put_image_to_window(game->mlx_ptr, game->win_ptr, game->img_wall, tmp->extract[i], tmp->index );
+				mlx_put_image_to_window(game->mlx_ptr, game->win_ptr, game->img_wall, x * 50, y);
 			}
-	 		i++;
-			tmp->index++;
+	 		x++;
+			y++;
 	 	}
 	 	tmp = tmp->next;
 	}
@@ -112,4 +121,4 @@ void    display_the_map(t_game *game, t_map **map)
 	
     
     
-}
+}*/

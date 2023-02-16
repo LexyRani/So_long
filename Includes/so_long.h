@@ -6,7 +6,7 @@
 /*   By: aceralin <aceralin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/27 13:20:27 by aceralin          #+#    #+#             */
-/*   Updated: 2023/02/11 21:15:06 by aceralin         ###   ########.fr       */
+/*   Updated: 2023/02/15 23:37:48 by aceralin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@
 # ifndef BUFFER_SIZE
 #  define BUFFER_SIZE 42
 # endif
+
 typedef struct s_data
 {
 			
@@ -35,6 +36,11 @@ typedef struct s_data
 			int		endian;			
 }				t_data;
 
+typedef struct s_coordinate
+{
+	int y;
+	int x;	
+}		t_coordinate;
 
 typedef struct s_count // compteur
 {
@@ -46,7 +52,7 @@ typedef struct s_count // compteur
 
 typedef struct s_map //map
 {
-			char	*extract;
+			char	*line;
 			int		index;
 			struct s_map	*prev;
 			struct s_map	*next;
@@ -58,6 +64,8 @@ typedef struct s_game //game
 	t_map	*head_map;
 	t_map	*head_map_cp;//Parsing copy_map
 	// t_map	**map;
+	char	**map_game;
+	
 	void	*mlx_ptr;
 	void	*win_ptr;
 	void	*img;
@@ -84,12 +92,12 @@ int			is_all_one( t_map *map);
 
 /*______/VALID MAP\_____*/
 void		ft_init_count(t_count	count);
-void		is_not_valid_count(t_map **map, t_count *count);
-int			change_nextp(t_map *map, t_count *count, int i);
-t_count 	*is_what_kind(char tmp, t_map **map, t_count *count);
+void		is_not_valid_count(t_map **map, t_count **count);
+int			change_nextp(char **map, t_count **count, t_coordinate *coor);
+t_count 	**is_what_kind(char tmp, t_map **map, t_count **count);
 int			change_c_to_p_i(t_map *map, t_count *count, int i,char c);
 int			change_c_to_p_np(t_map *map, t_count *count, int i, char c);
-int			is_not_valid_path(t_game *game, t_map **map, t_count *count);
+int			is_not_valid_path(t_game *game, t_map **map, t_count **count);
 /******************************************************************************/
 /*									GET_NEXT_LINE	  						  */
 /******************************************************************************/

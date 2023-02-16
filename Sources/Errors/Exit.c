@@ -6,7 +6,7 @@
 /*   By: aceralin <aceralin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/27 15:11:39 by aceralin          #+#    #+#             */
-/*   Updated: 2023/02/11 21:13:41 by aceralin         ###   ########.fr       */
+/*   Updated: 2023/02/15 14:11:39 by aceralin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ void	ft_exit(t_map *map, char *msg)
 	{
 		tmp = map;
 		map = map->next;
-		free(tmp->extract);
+		free(tmp->line);
 		free(tmp);
 		
 	}
@@ -40,7 +40,7 @@ void	free_map(t_map *map)
 	{
 		tmp = map;
 		map = map->next;
-		free(tmp->extract);
+		free(tmp->line);
 		free(tmp);
 	}
 	free(map);

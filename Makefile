@@ -33,7 +33,7 @@ HEADER += Includes/so_long.h
 
 #**************************Compilateurs***********************#
 CC = cc
-CFLAGS = -g -Wall -Wextra -Werror #-fsanitize=address
+CFLAGS = -Wall -Wextra -Werror -g3 #-fsanitize=address
 
 
 #*****************************RULES***************************#
