@@ -6,7 +6,7 @@
 /*   By: aceralin <aceralin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/09 14:40:38 by aceralin          #+#    #+#             */
-/*   Updated: 2023/02/17 12:19:36 by aceralin         ###   ########.fr       */
+/*   Updated: 2023/02/17 21:21:41 by aceralin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,9 +85,9 @@ void    display_the_map(t_game *game)
 	mlx_get_screen_size(game->mlx_ptr, &length, &width);
 	//printf("length = %d - width =%d\n", width, length);
 	if(x * 50 > length || y * 50 > length)
-		ft_exit(NULL, "Window error");
+		ft_exit(NULL, "Error: the map is too big for the screen");
 	
-	game->win_ptr = mlx_new_window(game->mlx_ptr, x * 50 , y * 50 , "So_long");
+	game->win_ptr = mlx_new_window(game->mlx_ptr, x * 50 , y * 50 , "LA CASA DE PAPEL");
 	if(!game->win_ptr)
 		ft_close(game);
 	image_init(game);

@@ -6,7 +6,7 @@
 /*   By: aceralin <aceralin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/16 21:11:40 by aceralin          #+#    #+#             */
-/*   Updated: 2023/02/17 18:30:26 by aceralin         ###   ########.fr       */
+/*   Updated: 2023/02/17 21:06:20 by aceralin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,13 @@ void	ft_move_left(t_game *game)
         {
 			game->count_c--; 
 			game->map_game[game->y][game->x] = 'P';
-			game->map_game[game->y][game->x + 1] = '0';
+			if(game->count_e == 0)
+			{
+				game->map_game[game->y][game->x + 1] = 'E';
+				game->count_e++;
+			}
+			else
+				game->map_game[game->y][game->x + 1] = '0';
 			mlx_put_image_to_window(game->mlx_ptr, game->win_ptr, game->img_player, game->x * 50,game->y * 50);
 			mlx_put_image_to_window(game->mlx_ptr, game->win_ptr, game->img_floor, game->x * 50, game->y * 50);
 		}
@@ -105,9 +111,16 @@ void	ft_move_right(t_game *game)
 		}
 		else if(game->map_game[game->y][game->x]== 'C')
 		{
+			
 			game->count_c--;
 			game->map_game[game->y][game->x] = 'P';
-			game->map_game[game->y][game->x - 1] = '0';
+			if(game->count_e == 0)
+			{
+				game->map_game[game->y][game->x - 1] = 'E';
+				game->count_e++;
+			}
+			else
+				game->map_game[game->y][game->x - 1] = '0';
 			mlx_put_image_to_window(game->mlx_ptr, game->win_ptr, game->img_player, game->x * 50,game->y * 50);
 			mlx_put_image_to_window(game->mlx_ptr, game->win_ptr, game->img_floor, game->x * 50, game->y * 50);
 		}
@@ -161,7 +174,13 @@ void	ft_move_down(t_game *game)
 		{
 			game->count_c--;
 			game->map_game[game->y][game->x] = 'P';
-			game->map_game[game->y - 1][game->x] = '0';
+			if(game->count_e == 0)
+			{
+				game->map_game[game->y - 1][game->x] = 'E';
+				game->count_e++;
+			}
+			else
+				game->map_game[game->y - 1][game->x] = '0';
        		mlx_put_image_to_window(game->mlx_ptr, game->win_ptr, game->img_player, game->x * 50,game->y * 50);
 			mlx_put_image_to_window(game->mlx_ptr, game->win_ptr, game->img_floor, game->x * 50, game->y * 50);
 		}
@@ -214,7 +233,13 @@ void ft_move_up(t_game *game)
         {
 			game->count_c--;
 			game->map_game[game->y][game->x] = 'P';
-			game->map_game[game->y + 1][game->x] = '0';
+			if(game->count_e == 0)
+			{
+				game->map_game[game->y + 1][game->x] = 'E';
+				game->count_e++;
+			}
+			else
+				game->map_game[game->y + 1][game->x] = '0';
        	 	mlx_put_image_to_window(game->mlx_ptr, game->win_ptr, game->img_player, game->x * 50,game->y * 50);
 			mlx_put_image_to_window(game->mlx_ptr, game->win_ptr, game->img_floor, game->x * 50, game->y * 50);
 		} 
