@@ -6,7 +6,7 @@
 /*   By: aceralin <aceralin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/16 21:19:19 by aceralin          #+#    #+#             */
-/*   Updated: 2023/02/16 22:52:37 by aceralin         ###   ########.fr       */
+/*   Updated: 2023/02/17 12:37:23 by aceralin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,4 +31,7 @@ void	display_init(t_game *game)
 	game->img_floor = 0;
 	game->img_player = 0;
 	game->img_wall = 0;
+	game->count_c = 0;
+	game->count_e = 0;
+	game->move = 0;
 }

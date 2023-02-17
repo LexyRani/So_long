@@ -6,7 +6,7 @@
 /*   By: aceralin <aceralin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/09 14:40:38 by aceralin          #+#    #+#             */
-/*   Updated: 2023/02/16 22:52:06 by aceralin         ###   ########.fr       */
+/*   Updated: 2023/02/17 12:19:36 by aceralin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,6 @@ void	*ft_convert_to_img(char *img, t_game *data)
 	return (img_ptr);
 }
 
-
 int	print_map(t_map *tmp)
 {
 	t_map	*head;
@@ -37,7 +36,7 @@ int	print_map(t_map *tmp)
 	return (1);
 }
 
-void	put_images(t_game *game)
+int	put_images(t_game *game)
 {
 	int		x;
 	int		y;
@@ -62,6 +61,7 @@ void	put_images(t_game *game)
 		}
 		y++;
 	}
+	return(0);
 }
 
 void    display_the_map(t_game *game)
@@ -87,12 +87,14 @@ void    display_the_map(t_game *game)
 	if(x * 50 > length || y * 50 > length)
 		ft_exit(NULL, "Window error");
 	
-	game->win_ptr = mlx_new_window(game->mlx_ptr, x * 50 , y * 50 , "mlx 42");
+	game->win_ptr = mlx_new_window(game->mlx_ptr, x * 50 , y * 50 , "So_long");
 	if(!game->win_ptr)
 		ft_close(game);
 	image_init(game);
 	put_images(game);
+	get_count(game);
 	mlx_hook(game->win_ptr, 2 , 1L<<0, ft_key_move, game);
 	mlx_hook(game->win_ptr, 17, (1L << 17), ft_close, game);
+	mlx_loop_hook(game->mlx_ptr, put_images, game);
   	mlx_loop(game->mlx_ptr);
 }

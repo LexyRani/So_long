@@ -6,7 +6,7 @@
 /*   By: aceralin <aceralin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/27 13:20:27 by aceralin          #+#    #+#             */
-/*   Updated: 2023/02/16 23:04:35 by aceralin         ###   ########.fr       */
+/*   Updated: 2023/02/17 12:32:37 by aceralin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,16 +26,7 @@
 # ifndef BUFFER_SIZE
 #  define BUFFER_SIZE 42
 # endif
-/*
-typedef struct s_data
-{
-			
-			char	*addr;
-			int		bits_per_pixel;
-			int		line_lenght;
-			int		endian;			
-}				t_data;
-*/
+
 typedef struct s_coordinate
 {
 	int y;
@@ -75,6 +66,9 @@ typedef struct s_game //game
 	void	*img_coin;
 	void	*img_player;
 	void	*img_exit;
+	int		count_e;
+	int		count_c;
+	int		move;
 } 			t_game;
 
 /******************************************************************************/
@@ -137,9 +131,11 @@ int			ft_lstsize(t_map *lst);
 /******************************************************************************/
 
 /*_______/GAME\______*/
-void	put_images(t_game *game);
+int		put_images(t_game *game);
 void	display_the_map(t_game *game);
-void	put_images(t_game *game);
+void	get_count(t_game *game);
+
+//void	put_images(t_game *game);
 void	*ft_convert_to_img(char *img, t_game *data);
 
 /*_______/INIT\_______*/
