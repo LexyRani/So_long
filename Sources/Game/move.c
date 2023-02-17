@@ -6,7 +6,7 @@
 /*   By: aceralin <aceralin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/16 21:11:40 by aceralin          #+#    #+#             */
-/*   Updated: 2023/02/17 13:09:44 by aceralin         ###   ########.fr       */
+/*   Updated: 2023/02/17 18:30:26 by aceralin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,6 @@ void	get_count(t_game *game)
 
 void	ft_move_left(t_game *game)
 {
-	/*gerer le cas de 1CEP1*/
 	game->x = game->x - 1;
 	if(game->map_game[game->y][game->x] != '1')
 	{
@@ -46,37 +45,47 @@ void	ft_move_left(t_game *game)
             if(game->count_c == 0)
             {
                 game->move++;
-                // print le nombre//\n a la fin
-                printf("%d\n", game->move);// a retirer
+                printf("%d\n", game->move);// a retirer // print le nombre//\n a la fin
                 exit(EXIT_SUCCESS);//ft_exit
             }
-            return;;
+			game->map_game[game->y][game->x] = 'P';
+			game->map_game[game->y][game->x + 1] = '0';
+			mlx_put_image_to_window(game->mlx_ptr, game->win_ptr, game->img_player, game->x * 50,game->y * 50);
+			mlx_put_image_to_window(game->mlx_ptr, game->win_ptr, game->img_floor, game->x * 50, game->y * 50);
+            ///return;;
 		}
-		if(game->map_game[game->y][game->x]== 'C')
-            game->count_c--;
-           
-        game->map_game[game->y][game->x] = 'P';
-        game->map_game[game->y][game->x + 1] = '0';
-		/*if(game->count_e == -1)
+		else if(game->map_game[game->y][game->x]== 'C')
+        {
+			game->count_c--; 
+			game->map_game[game->y][game->x] = 'P';
+			game->map_game[game->y][game->x + 1] = '0';
+			mlx_put_image_to_window(game->mlx_ptr, game->win_ptr, game->img_player, game->x * 50,game->y * 50);
+			mlx_put_image_to_window(game->mlx_ptr, game->win_ptr, game->img_floor, game->x * 50, game->y * 50);
+		}
+		else if (game->map_game[game->y][game->x] == '0')
 		{
-			mlx_put_image_to_window(game->mlx_ptr, game->win_ptr, game->img_exit, game->x * 50,game->y * 50);
-			game->count_e++;
-		}*/
-		//si compteur de e = -1
-            // remplacer le P par le E
-            //compteur de e++  */   
-        mlx_put_image_to_window(game->mlx_ptr, game->win_ptr, game->img_player, game->x * 50,game->y * 50);
-		print_double_array(game->map_game);
-		mlx_put_image_to_window(game->mlx_ptr, game->win_ptr, game->img_floor, game->x * 50, game->y * 50);
+			if(game->count_e == 0 )
+			{
+				game->map_game[game->y][game->x] = 'P';
+				game->map_game[game->y][game->x + 1] = 'E';
+				mlx_put_image_to_window(game->mlx_ptr, game->win_ptr, game->img_exit, (game->x + 1) * 50,game->y * 50);
+				game->count_e++;
+			}
+			else
+			{
+				game->map_game[game->y][game->x] = 'P';
+        		game->map_game[game->y][game->x + 1] = '0';
+        		mlx_put_image_to_window(game->mlx_ptr, game->win_ptr, game->img_player, game->x * 50,game->y * 50);
+				mlx_put_image_to_window(game->mlx_ptr, game->win_ptr, game->img_floor, game->x * 50, game->y * 50);
+			}
+		}
         game->move++;
-		printf("%d\n", game->move);//a retirer
-        //print le nombre
-        //\n a la fin
+		print_double_array(game->map_game);
+		printf("%d\n", game->move);//a retirer//print le nombre//\n a la fin
 	}	
 }
 void	ft_move_right(t_game *game)
 {
-	/*gerer le cas de 1CEP1*/
 	game->x = game->x + 1;
 	if(game->map_game[game->y][game->x] != '1')
 	{
@@ -86,34 +95,50 @@ void	ft_move_right(t_game *game)
             if(game->count_c == 0)
             {
                 game->move++;
-                // print le nombre//\n a la fin
-                printf("%d\n", game->move);// a retirer
+                printf("%d\n", game->move);// a retirer// print le nombre//\n a la fin
                 exit(EXIT_SUCCESS);//ft_exit
             }
-            return;;
+            game->map_game[game->y][game->x] = 'P';
+        	game->map_game[game->y][game->x - 1] = '0';
+        	mlx_put_image_to_window(game->mlx_ptr, game->win_ptr, game->img_player, game->x * 50,game->y * 50);
+			mlx_put_image_to_window(game->mlx_ptr, game->win_ptr, game->img_floor, game->x * 50, game->y * 50);
 		}
-		if(game->map_game[game->y][game->x]== 'C')
+		else if(game->map_game[game->y][game->x]== 'C')
 		{
-            game->count_c--;
+			game->count_c--;
+			game->map_game[game->y][game->x] = 'P';
+			game->map_game[game->y][game->x - 1] = '0';
+			mlx_put_image_to_window(game->mlx_ptr, game->win_ptr, game->img_player, game->x * 50,game->y * 50);
+			mlx_put_image_to_window(game->mlx_ptr, game->win_ptr, game->img_floor, game->x * 50, game->y * 50);
 		}
-        //si compteur de e = -1
-            // remplacer le P par le E
-            //compteur de e++        
-        game->map_game[game->y][game->x] = 'P';
-        game->map_game[game->y][game->x - 1] = '0';
-        mlx_put_image_to_window(game->mlx_ptr, game->win_ptr, game->img_player, game->x * 50,game->y * 50);
-		print_double_array(game->map_game);
-		mlx_put_image_to_window(game->mlx_ptr, game->win_ptr, game->img_floor, game->x * 50, game->y * 50);
+		else if (game->map_game[game->y][game->x] == '0')
+		{
+			if(game->count_e == 0 )
+			{
+				game->map_game[game->y][game->x] = 'P';
+				game->map_game[game->y][game->x - 1] = 'E';
+				mlx_put_image_to_window(game->mlx_ptr, game->win_ptr, game->img_exit, (game->x - 1) * 50,game->y * 50);
+				game->count_e++;
+			}
+			else
+			{
+				game->map_game[game->y][game->x] = 'P';
+				game->map_game[game->y][game->x - 1] = '0';
+				mlx_put_image_to_window(game->mlx_ptr, game->win_ptr, game->img_player, game->x * 50,game->y * 50);
+				mlx_put_image_to_window(game->mlx_ptr, game->win_ptr, game->img_floor, game->x * 50, game->y * 50);
+			}
+		}
+		
         game->move++;
+		
 		printf("%d\n", game->move);//a retirer
-        //print le nombre
+        print_double_array(game->map_game);//print le nombre
         //\n a la fin
 	}	
 }
 
 void	ft_move_down(t_game *game)
 {
-		/*gerer le cas de 1CEP1*/
 	game->y = game->y + 1;
 	if(game->map_game[game->y][game->x] != '1')
 	{
@@ -123,35 +148,50 @@ void	ft_move_down(t_game *game)
             if(game->count_c == 0)
             {
                 game->move++;
-                // print le nombre//\n a la fin
-                printf("%d\n", game->move);// a retirer
+                printf("%d\n", game->move);// a retirer/ a retirer// print le nombre//\n a la fin
                 exit(EXIT_SUCCESS);//ft_exit
             }
-            return;;
+			game->map_game[game->y][game->x] = 'P';
+			game->map_game[game->y - 1][game->x] = '0';
+       		mlx_put_image_to_window(game->mlx_ptr, game->win_ptr, game->img_player, game->x * 50,game->y * 50);
+			mlx_put_image_to_window(game->mlx_ptr, game->win_ptr, game->img_floor, game->x * 50, game->y * 50);
+            //return;;
 		}
-		if(game->map_game[game->y][game->x]== 'C')
+		else if(game->map_game[game->y][game->x]== 'C')
 		{
-            game->count_c--;
+			game->count_c--;
+			game->map_game[game->y][game->x] = 'P';
+			game->map_game[game->y - 1][game->x] = '0';
+       		mlx_put_image_to_window(game->mlx_ptr, game->win_ptr, game->img_player, game->x * 50,game->y * 50);
+			mlx_put_image_to_window(game->mlx_ptr, game->win_ptr, game->img_floor, game->x * 50, game->y * 50);
 		}
-        
-        //si compteur de e = -1
-            // remplacer le P par le E
-            //compteur de e++  */      
-        game->map_game[game->y][game->x] = 'P';
-        game->map_game[game->y - 1][game->x] = '0';
-        mlx_put_image_to_window(game->mlx_ptr, game->win_ptr, game->img_player, game->x * 50,game->y * 50);
+              
+		else if (game->map_game[game->y][game->x] == '0')
+		{
+			if( game->count_e == 0 )
+			{
+				game->map_game[game->y][game->x] = 'P';
+				game->map_game[game->y - 1][game->x] = 'E';
+				mlx_put_image_to_window(game->mlx_ptr, game->win_ptr, game->img_exit, game->x  * 50, (game->y - 1) * 50);
+				game->count_e++;
+			}
+			else
+			{
+				game->map_game[game->y][game->x] = 'P';
+        		game->map_game[game->y - 1][game->x] = '0';
+				mlx_put_image_to_window(game->mlx_ptr, game->win_ptr, game->img_player, game->x * 50,game->y * 50);
+				mlx_put_image_to_window(game->mlx_ptr, game->win_ptr, game->img_floor, game->x * 50, game->y * 50);
+			}
+		}
+		
+		game->move++;
 		print_double_array(game->map_game);
-		mlx_put_image_to_window(game->mlx_ptr, game->win_ptr, game->img_floor, game->x * 50, game->y * 50);
-       	game->move++;
-		printf("%d\n", game->move);//a retirer
-        //print le nombre
-        //\n a la fin
+		printf("%d\n", game->move);//a retirer//print le nombre //\n a la fin
 	}	
 }
 
 void ft_move_up(t_game *game)
 {
-	/*gerer le cas de 1CEP1*/
 	game->y = game->y - 1;
 	if(game->map_game[game->y][game->x] != '1')
 	{
@@ -161,35 +201,44 @@ void ft_move_up(t_game *game)
             if(game->count_c == 0)
             {
                 game->move++;
-                // print le nombre//\n a la fin
-                printf("%d\n", game->move);// a retirer
+                printf("LAST GAME MOVE UP%d\n", game->move);// a retirer// print le nombre//\n a la fin
                 exit(EXIT_SUCCESS);//ft_exit
             }
-            return;;
+			game->map_game[game->y][game->x] = 'P';
+			game->map_game[game->y + 1][game->x] = '0';
+			mlx_put_image_to_window(game->mlx_ptr, game->win_ptr, game->img_player, game->x * 50,game->y * 50);
+			mlx_put_image_to_window(game->mlx_ptr, game->win_ptr, game->img_floor, game->x * 50, game->y * 50);
+				// return;
 		}
-		if(game->map_game[game->y][game->x]== 'C')
+		else if(game->map_game[game->y][game->x]== 'C')
+        {
+			game->count_c--;
+			game->map_game[game->y][game->x] = 'P';
+			game->map_game[game->y + 1][game->x] = '0';
+       	 	mlx_put_image_to_window(game->mlx_ptr, game->win_ptr, game->img_player, game->x * 50,game->y * 50);
+			mlx_put_image_to_window(game->mlx_ptr, game->win_ptr, game->img_floor, game->x * 50, game->y * 50);
+		} 
+		else if (game->map_game[game->y][game->x] == '0')
 		{
-            game->count_c--;
+			if(game->count_e == 0 )
+			{
+				game->map_game[game->y][game->x] = 'P';
+				game->map_game[game->y + 1][game->x] = 'E';
+				mlx_put_image_to_window(game->mlx_ptr, game->win_ptr, game->img_exit, game->x  * 50, (game->y + 1) * 50);
+				game->count_e++;
+			}
+			else
+			{
+				game->map_game[game->y][game->x] = 'P';
+				game->map_game[game->y + 1][game->x] = '0';
+       	 		mlx_put_image_to_window(game->mlx_ptr, game->win_ptr, game->img_player, game->x * 50,game->y * 50);
+				mlx_put_image_to_window(game->mlx_ptr, game->win_ptr, game->img_floor, game->x * 50, game->y * 50);
+			}
 		}
 		
-        //si compteur de e = -1
-            // remplacer le P par le E
-			//remettre E si tout les C pas encore recoltes
-            //compteur de e++        
-        game->map_game[game->y][game->x] = 'P';
-		/*if(game->count_e == -1 && game->map_game[game->y - 1][game->x] == 'P') 
-		{
-			mlx_put_image_to_window(game->mlx_ptr, game->win_ptr, game->img_exit, game->x * 50,(game->y - 1) * 50);
-			game->count_e++;
-		}*/
-        game->map_game[game->y + 1][game->x] = '0';
-        mlx_put_image_to_window(game->mlx_ptr, game->win_ptr, game->img_player, game->x * 50,game->y * 50);
-		print_double_array(game->map_game);
-		mlx_put_image_to_window(game->mlx_ptr, game->win_ptr, game->img_floor, game->x * 50, game->y * 50);
         game->move++;
-		printf("%d\n", game->move);//a retirer
-        //print le nombre
-        //\n a la fin
+		print_double_array(game->map_game);
+		printf("%d\n", game->move);//a retirer //print le nombre//\n a la fin  
 	}	
 }
 
