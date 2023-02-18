@@ -6,7 +6,7 @@
 /*   By: aceralin <aceralin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/31 21:27:43 by aceralin          #+#    #+#             */
-/*   Updated: 2023/02/16 00:34:54 by aceralin         ###   ########.fr       */
+/*   Updated: 2023/02/18 14:28:37 by aceralin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,6 @@ int	is_all_one( t_map *map)
 {
 	int i;
 	i = 0;
-	//printf("%s\n", map->extract);
 	while(map->line[i])
 	{
 		if(map->line[i] != '1')
@@ -75,6 +74,44 @@ int	is_not_wall_framed(t_map **map)
 	return(0);
 }
 
+// static int	valid_char(char c)
+// {
+// 	if (c == '0' || c == 'E' || c == '1' || c == 'C' || c == 'P')
+// 		return (0);
+// 	return (1);
+// }
+
+int	is_bad_char(t_map **map)
+{
+	t_map	*tmp;
+	int		i;
+
+	tmp = *map;	
+	while(tmp)
+	{
+		i = 0;
+		while(tmp->line[i])
+		{	
+			if(tmp->line[i] != '0' && tmp->line[i] != 'E' &&
+				 tmp->line[i] != '1' && tmp->line[i] != 'C' &&
+				 tmp->line[i] != 'P')
+			{
+				printf("%d\n", tmp->line[i]);
+				return(1);	
+			}
+			// if(valid_char(tmp->line[i]))
+			// {
+			// 	printf("here %d\n", tmp->line[i]);
+			// 	return(1);	
+			// }
+			i++;
+		}
+		tmp = tmp->next;
+	}
+	return(0);
+	
+}
+
 void	ft_map_is_valid(t_game *game, t_map **map)
 {
 	t_count  *count;
@@ -89,6 +126,8 @@ void	ft_map_is_valid(t_game *game, t_map **map)
 		ft_exit(*map, "Error: map is not rectangle");
 	if(is_not_wall_framed(map))
 	 	ft_exit(*map, "Error: map is missing wall");
+	if(is_bad_char(map))
+		ft_exit(*map, "Error: char must be 0, 1, E, P, C");
 	is_not_valid_count(map, &count);
 	if(is_not_valid_path(game, map, &count))
 	{

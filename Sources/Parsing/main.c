@@ -6,7 +6,7 @@
 /*   By: aceralin <aceralin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/27 13:20:07 by aceralin          #+#    #+#             */
-/*   Updated: 2023/02/17 22:41:16 by aceralin         ###   ########.fr       */
+/*   Updated: 2023/02/18 14:58:57 by aceralin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,13 +53,15 @@ int	main(int argc, char *argv[])
 	t_game	*game;
 	t_map	*lst;
 
-	game = (void *)malloc(sizeof(t_game));
-	lst = NULL;
-	map = &lst;
+	
 	if (argc != 2)
-		ft_exit(NULL, "Error");
+		ft_exit(NULL, "Error: there must be only two arguments \
+						([./so_long] [path_map.ber] )");
 	if ((ft_arg_is_not_ber(argv[1], ".ber")))
 		ft_exit(NULL, "Error: Your file is not .ber");
+	game = (void *)malloc(sizeof(t_game)); //liberer
+	lst = NULL;
+	map = &lst;
 	fd = open(argv[1], O_RDONLY);
 	if (fd == -1)
 		ft_exit(NULL, "Error to open the file");
