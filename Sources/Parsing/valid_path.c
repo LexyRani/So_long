@@ -6,7 +6,7 @@
 /*   By: aceralin <aceralin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/02 13:44:45 by aceralin          #+#    #+#             */
-/*   Updated: 2023/02/16 23:03:59 by aceralin         ###   ########.fr       */
+/*   Updated: 2023/02/18 20:16:31 by aceralin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,26 +31,26 @@ void print_double_array(char **array)
 	}
 }
 
-t_count	**is_what_kind(char tmp, t_map **map, t_count **count)
+int		is_what_kind(char tmp, t_count *count)
 {
 	if (tmp == 'P')
 	{
-		(*count)->p++;
-		if ((*count)->p > 1)
-			ft_exit(*map, "Error: map is not a valid path");
+		count->p++;
+		if (count->p > 1)
+			return(0);
 	}
 	if (tmp == 'C')
-		(*count)->c++;
+		count->c++;
 	if (tmp == 'E')
 	{
-		(*count)->e++;
-		if ((*count)->e > 1)
-			ft_exit(*map, "Error: map is not a valid path");
+		count->e++;
+		if (count->e > 1)
+			return(0);
 	}
-	return (count);
+	return (1);
 }
 
-void	is_not_valid_count(t_map **map, t_count **count)
+int	is_not_valid_count(t_map **map, t_count *count)
 {
 	t_map	*tmp;
 	int			i;
@@ -61,63 +61,64 @@ void	is_not_valid_count(t_map **map, t_count **count)
 		i = 0;
 		while (tmp->line[i])
 		{
-			count = is_what_kind(tmp->line[i], map, count);
+			if(!is_what_kind(tmp->line[i], count) )
+				return(1);
 			i++;
 		}
 		tmp = tmp->next;
 	}
-	printf("%d\n", (*count)->c);
-	if ((*count)->c <= 0)
-		ft_exit(*map, "Error: map is not a valid path");
-	if ((*count)->p == 0)
+	printf("%d\n", count->c);
+	if (count->c <= 0 || count->p == 0 || count->e == 0)//
+		return(1);//
+	return(0); /*if ()
 		ft_exit(*map, "Error: map is not a valid path"); //verifier le nombre de players possibles
-	if ((*count)->e == 0)
-		ft_exit(*map, "Error: map is not a valid path"); //verifier le nombre de sortie possibles
+	if ()
+		ft_exit(*map, "Error: map is not a valid path"); //verifier le nombre de sortie possibles*/
 }
 
-static int charset_to_p(char **map, t_count **count, t_coordinate *coor, char c)
+static int charset_to_p(char **map, t_count *count, t_coordinate *coor, char c)
 {
 	int check = 0;
 	if (map[coor->y - 1][coor->x] == c)
 	{
 		map[coor->y - 1][coor->x] = 'P';
 		if (c == 'C')
-			(*count)->c--;
+			count->c--;
 		else if (c == 'E')
-			(*count)->e--;
+			count->e--;
 		check++;
 	}
 	if (map[coor->y + 1][coor->x] == c)
 	{
 		map[coor->y + 1][coor->x] = 'P';
 		if (c == 'C')
-			(*count)->c--;
+			count->c--;
 		else if (c == 'E')
-			(*count)->e--;
+			count->e--;
 		check++;
 	}
 	if (map[coor->y][coor->x - 1] == c)
 	{
 		map[coor->y][coor->x - 1] = 'P';
 		if (c == 'C')
-			(*count)->c--;
+			count->c--;
 		else if (c == 'E')
-			(*count)->e--;
+			count->e--;
 		check++;
 	}
 	if (map[coor->y][coor->x + 1] == c)
 	{
 		map[coor->y][coor->x + 1] = 'P';
 		if (c == 'C')
-			(*count)->c--;
+			count->c--;
 		else if (c == 'E')
-			(*count)->e--;
+			count->e--;
 		check++;
 	}
 	return (check);
 }
 
-int	change_nextp(char **map, t_count **count, t_coordinate *coor)
+int	change_nextp(char **map, t_count *count, t_coordinate *coor)
 {
 	int	check;
 
@@ -149,6 +150,19 @@ int	change_nextp(char **map, t_count **count, t_coordinate *coor)
 	return (new);
 }*/
 
+static void	ft_free_double_tab(char **tab)
+{
+	int	i;
+
+	i = 0;
+	while (tab[i])
+	{
+		free (tab[i]);
+		i++;
+	}
+	free (tab);
+}
+
 static char **make_array_chain(t_map **map)
 {
 	char **new_array;
@@ -159,15 +173,15 @@ static char **make_array_chain(t_map **map)
 	tmp = *map;
 	len = 0;
 	i = 0;
-	if (!*map)
-		return (NULL);
+	//if (!*map)//verifier
+		//return (NULL);
 	len = ft_lstsize(tmp);
 	new_array = (char **)malloc(sizeof(char *) * (len + 1));
 	if (!new_array)
 		return (NULL);
 	while (i < len)
 	{
-		new_array[i] = tmp->line;
+		new_array[i] = ft_strdup_without_nl(tmp->line);
 		i++;
 		tmp = tmp->next;
 	}
@@ -187,23 +201,30 @@ char **copy_array(char **array, t_map **map)
 		return (NULL);
 	len = ft_lstsize(*map);
 	new_array = (char **)malloc(sizeof(char *) * (len + 1));
+	if (!new_array)
+		return(NULL);
 	while (i < len)
 	{
 		new_array[i] = ft_strdup_without_nl(array[i]);
+		if (!new_array[i])
+		{
+			ft_free_double_tab(new_array);
+			return (NULL);
+		}
 		i++;
 	}
 	new_array[i] = NULL;
 	return (new_array);
 }
 
-static int valid_map(t_count **count)
+static int valid_map(t_count *count)
 {
-	if ((*count)->c == 0 && (*count)->e == 0)
+	if (count->c == 0 && count->e == 0)
 		return (0);
 	return (1);
 }
 
-int	is_not_valid_path(t_game *game, t_map **map, t_count **count)
+int	is_not_valid_path(t_game *game, t_map **map, t_count *count)
 {
 	char 		**map_created;
 	t_coordinate coor;
@@ -214,8 +235,11 @@ int	is_not_valid_path(t_game *game, t_map **map, t_count **count)
 	change = 0;
 	game->map_game = make_array_chain(map);
 	if (!game->map_game)
-		return (0);
+		return (1);
 	map_created = copy_array(game->map_game, map);
+	if (!map_created)
+		return(1);
+	
 	while (valid_map(count))
 	{
 		coor.y = 0;
@@ -234,20 +258,17 @@ int	is_not_valid_path(t_game *game, t_map **map, t_count **count)
 		}
 		if (change == 0)
 		{
-			printf("i'm done with and something goes wrong");
+			// printf("i'm done with and something goes wrong");
+			// printf("REAL COPY\n");
+			// print_double_array(map_created);
+			// printf("\n");
+			ft_free_double_tab(map_created);
 			return (1);
 		}
 		else 
 			change = 0;
 	}
-	
-	printf("everything goes well !\n");
-	printf("MAP COPY\n");	
-	print_double_array(map_created);
-	printf("\n");
-	printf("REAL COPY\n");
-	print_double_array(game->map_game);
-	printf("\n");
+	ft_free_double_tab(map_created);
 	return (0);
 }
 

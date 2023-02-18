@@ -6,7 +6,7 @@
 /*   By: aceralin <aceralin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/31 21:27:43 by aceralin          #+#    #+#             */
-/*   Updated: 2023/02/18 14:28:37 by aceralin         ###   ########.fr       */
+/*   Updated: 2023/02/18 19:38:02 by aceralin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -114,26 +114,25 @@ int	is_bad_char(t_map **map)
 
 void	ft_map_is_valid(t_game *game, t_map **map)
 {
-	t_count  *count;
+	t_count  count;
 
-	count = malloc(sizeof(t_count));
-	count->c = 0;
-	count->e = 0;
-	count->p = 0;
+	count.c = 0;
+	count.e = 0;
+	count.p = 0;
 	if(*map == NULL)
-		ft_exit(NULL, "Error: map is empty");
+		ft_exit(NULL, NULL, "Error: map is empty");
 	if(is_not_rectangle(map))
-		ft_exit(*map, "Error: map is not rectangle");
+		ft_exit(*map, game, "Error: map is not rectangle");
 	if(is_not_wall_framed(map))
-	 	ft_exit(*map, "Error: map is missing wall");
+	 	ft_exit(*map, game,"Error: map is missing wall");
 	if(is_bad_char(map))
-		ft_exit(*map, "Error: char must be 0, 1, E, P, C");
-	is_not_valid_count(map, &count);
+		ft_exit(*map, game, "Error: char must be 0, 1, E, P, C");
+	if(is_not_valid_count(map, &count))
+		ft_exit(*map, game, "Error: map is not a valid path");
 	if(is_not_valid_path(game, map, &count))
-	{
-		printf("-----------\n");
-		print_map(*map);
-		printf("-----------\n");
-		ft_exit(*map, "Error: map is not a valid path");
-	}
+		ft_exit(*map, game, "Error: map is not a valid path");
 }
+
+/*printf("-----------\n");
+		print_map(*map);
+		printf("-----------\n");*/

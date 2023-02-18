@@ -6,7 +6,7 @@
 /*   By: aceralin <aceralin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/27 13:20:07 by aceralin          #+#    #+#             */
-/*   Updated: 2023/02/18 14:58:57 by aceralin         ###   ########.fr       */
+/*   Updated: 2023/02/18 20:13:24 by aceralin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ int	ft_arg_is_not_ber(char *s1, char *extension)
 	return (0);
 }
 
-void	ft_check_map(t_game *game, t_map **map, int fd)
+int	ft_check_map(t_map **map, int fd)
 {
 	t_map	*extract;
 	char	*ptr;
@@ -35,15 +35,15 @@ void	ft_check_map(t_game *game, t_map **map, int fd)
 	while (ptr)
 	{
 		extract = ft_lstnew(ptr);
-		game->head_map = extract;
 		if (!extract)
-			ft_exit(NULL, "Error");
+			return (0);
 		ft_lstadd_back(map, extract);
 		free (ptr);
 		ptr = get_next_line(fd);
 	}
 	if (close(fd) == -1)
-		ft_exit(NULL, "Error\n");
+		return (0);
+	return (1);
 }
 
 int	main(int argc, char *argv[])
@@ -55,22 +55,29 @@ int	main(int argc, char *argv[])
 
 	
 	if (argc != 2)
-		ft_exit(NULL, "Error: there must be only two arguments \
+	{
+		ft_exit(NULL, NULL, "Error: there must be only two arguments \
 						([./so_long] [path_map.ber] )");
+	}
 	if ((ft_arg_is_not_ber(argv[1], ".ber")))
-		ft_exit(NULL, "Error: Your file is not .ber");
-	game = (void *)malloc(sizeof(t_game)); //liberer
+		ft_exit(NULL, NULL, "Error: Your file is not .ber");
 	lst = NULL;
 	map = &lst;
 	fd = open(argv[1], O_RDONLY);
 	if (fd == -1)
-		ft_exit(NULL, "Error to open the file");
-	ft_check_map(game, map, fd);
-	ft_map_is_valid(game, map);
+		ft_exit(NULL, NULL, "Error: to open the file");
+	if (!ft_check_map(map, fd))
+		ft_exit(*map, NULL, "Error: Malloc fail"); // Il faut change ce message (close or malloc)
+	game = (void *)malloc(sizeof(t_game)); //liberer
+	if (!game)
+		ft_exit(*map, NULL, "Error: Malloc fail");
+	game->head_map = map;
+	display_init(game);
+	ft_map_is_valid(game, game->head_map);
+	// Tout est bon
 	display_the_map(game);
-	free_game(game);
-	dprintf(1, "%s\n", "--- EXITED HERE ---\n");
-	ft_exit(*map, "");
+	// free_game(game);
+	ft_exit(*map, game, "");
 }
 
 //--leak-check=full --show-leak-kinds=

@@ -6,7 +6,7 @@
 /*   By: aceralin <aceralin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/16 21:19:19 by aceralin          #+#    #+#             */
-/*   Updated: 2023/02/18 14:10:59 by aceralin         ###   ########.fr       */
+/*   Updated: 2023/02/18 17:03:24 by aceralin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@ void	image_init(t_game *data)
 
 void	display_init(t_game *game)
 {
+	game->map_game = NULL;//
 	game->mlx_ptr = NULL;
 	game->img = NULL ;
 	game->win_ptr = NULL;
