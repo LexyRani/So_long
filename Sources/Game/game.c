@@ -6,7 +6,7 @@
 /*   By: aceralin <aceralin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/09 14:40:38 by aceralin          #+#    #+#             */
-/*   Updated: 2023/02/19 18:01:56 by aceralin         ###   ########.fr       */
+/*   Updated: 2023/02/20 00:25:21 by aceralin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,25 @@ void	*ft_convert_to_img(char *img, t_game *data)
 	return (img_ptr);
 }
 
+void	put_image_to_window(t_game *game, int x, int y)
+{
+	if (game->map_game[y][x] == '1')
+		mlx_put_image_to_window(game->mlx_ptr, game->win_ptr,
+			game->img_wall, x * 50, y * 50);
+	if (game->map_game[y][x] == 'C')
+		mlx_put_image_to_window(game->mlx_ptr, game->win_ptr,
+			game->img_coin, x * 50, y * 50);
+	if (game->map_game[y][x] == 'E')
+		mlx_put_image_to_window(game->mlx_ptr, game->win_ptr,
+			game->img_exit, x * 50, y * 50);
+	if (game->map_game[y][x] == 'P')
+		mlx_put_image_to_window(game->mlx_ptr, game->win_ptr,
+			game->img_player, x * 50, y * 50);
+	if (game->map_game[y][x] == '0')
+		mlx_put_image_to_window(game->mlx_ptr, game->win_ptr,
+			game->img_floor, x * 50, y * 50);
+}
+
 int	put_images(t_game *game)
 {
 	int		x;
@@ -36,17 +55,8 @@ int	put_images(t_game *game)
 	{
 		x = 0;
 		while (game->map_game[y][x])
-	 	{
-	 		if (game->map_game[y][x] == '1')
-				mlx_put_image_to_window(game->mlx_ptr, game->win_ptr, game->img_wall, x * 50, y * 50);
-			if (game->map_game[y][x] == 'C')
-				mlx_put_image_to_window(game->mlx_ptr, game->win_ptr, game->img_coin, x * 50, y * 50);
-			if (game->map_game[y][x] == 'E')
-				mlx_put_image_to_window(game->mlx_ptr, game->win_ptr, game->img_exit, x * 50, y * 50);
-			if (game->map_game[y][x] == 'P')
-				mlx_put_image_to_window(game->mlx_ptr, game->win_ptr, game->img_player, x * 50, y * 50);
-			if (game->map_game[y][x] == '0')
-				mlx_put_image_to_window(game->mlx_ptr, game->win_ptr, game->img_floor, x * 50, y * 50);
+		{
+			put_image_to_window(game, x, y);
 			x++;
 		}
 		y++;
@@ -69,7 +79,8 @@ void	display_the_map(t_game *game)
 	mlx_get_screen_size(game->mlx_ptr, &length, &width);
 	if (x * 50 > length || y * 50 > length)
 		ft_exit(NULL, game, "Error: the map is too big for the screen");
-	game->win_ptr = mlx_new_window(game->mlx_ptr, x * 50 , y * 50 , "LA CASA DE PAPEL");
+	game->win_ptr = mlx_new_window(game->mlx_ptr,
+			x * 50, y * 50, "LA CASA DE PAPEL");
 	if (!game->win_ptr)
 		ft_close(game);
 	image_init(game);

@@ -12,6 +12,8 @@ SRCS += Sources/Parsing/main.c
 SRCS += Sources/Parsing/valid_map_1.c
 SRCS += Sources/Parsing/valid_map_2.c
 SRCS += Sources/Parsing/valid_path.c
+SRCS += Sources/Parsing/valid_path_2.c
+SRCS += Sources/Parsing/make_array_chain.c
 
 #******************************************************************************#
 #*									GAME	  								  *#

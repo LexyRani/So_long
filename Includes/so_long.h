@@ -6,7 +6,7 @@
 /*   By: aceralin <aceralin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/27 13:20:27 by aceralin          #+#    #+#             */
-/*   Updated: 2023/02/19 20:18:42 by aceralin         ###   ########.fr       */
+/*   Updated: 2023/02/20 00:05:44 by aceralin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,11 +41,11 @@
 
 //#define ERROR "Error: Malloc or close fail"
 //#define 
-typedef struct s_coordinate
+typedef struct s_coord
 {
 	int	y;
 	int	x;	
-}		t_coordinate;
+}		t_coord;
 
 typedef struct s_count
 {
@@ -101,9 +101,23 @@ void		ft_map_is_valid(t_game *game, t_map **map);
 
 /*______/VALID PATH\_____*/
 int			is_not_valid_count(t_map **map, t_count *count);
-int			change_nextp(char **map, t_count *count, t_coordinate *coor);
+int			change_nextp(char **map, t_count *count, t_coord *coor);
 int			is_what_kind(char tmp, t_count *count);
 int			is_not_valid_path(t_game *game, t_map **map, t_count *count);
+
+/*______/VALID PATH2\_____*/
+
+int			charset_to_p(char **map, t_count *count, t_coord *coor, char c);
+void		to_left(char **map, t_count *count, t_coord *coor, char c);
+void		to_right(char **map, t_count *count, t_coord *coor, char c);
+void		to_down(char **map, t_count *count, t_coord *coor, char c);
+void		to_up(char **map, t_count *count, t_coord *coor, char c);
+
+/*______/MAKE_ARRAY_CHAIN\_____*/
+
+char		**copy_array(char **array, t_map **map);
+char		**make_array_chain(t_map **map);
+void		ft_free_double_tab(char **tab);
 
 /******************************************************************************/
 /*									GET_NEXT_LINE	  						  */
