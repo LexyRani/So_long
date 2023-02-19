@@ -6,7 +6,7 @@
 /*   By: aceralin <aceralin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/16 21:11:40 by aceralin          #+#    #+#             */
-/*   Updated: 2023/02/17 21:06:20 by aceralin         ###   ########.fr       */
+/*   Updated: 2023/02/19 14:40:53 by aceralin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -296,15 +296,10 @@ int	ft_key_move( int key, t_game *game)
 {
 	player_position(game);
 	
-	if(key == XK_Escape)
-	{
-		printf("Exit)\n");
-		exit(EXIT_SUCCESS);
-	}
+	if (key == XK_Escape)
+		ft_close(game);
 	else if (key == XK_w)
-	{
 		ft_move_up(game);
-	}
 	else if (key == XK_a)
 		ft_move_left(game);
 	else if (key == XK_d)

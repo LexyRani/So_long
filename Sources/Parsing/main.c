@@ -6,7 +6,7 @@
 /*   By: aceralin <aceralin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/27 13:20:07 by aceralin          #+#    #+#             */
-/*   Updated: 2023/02/18 20:13:24 by aceralin         ###   ########.fr       */
+/*   Updated: 2023/02/19 15:16:55 by aceralin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,35 +53,40 @@ int	main(int argc, char *argv[])
 	t_game	*game;
 	t_map	*lst;
 
-	
 	if (argc != 2)
-	{
-		ft_exit(NULL, NULL, "Error: there must be only two arguments \
-						([./so_long] [path_map.ber] )");
-	}
+		ft_exit(NULL, NULL, ERROR_ARG);
 	if ((ft_arg_is_not_ber(argv[1], ".ber")))
-		ft_exit(NULL, NULL, "Error: Your file is not .ber");
+		ft_exit(NULL, NULL, ERROR_ARG);
 	lst = NULL;
 	map = &lst;
 	fd = open(argv[1], O_RDONLY);
 	if (fd == -1)
-		ft_exit(NULL, NULL, "Error: to open the file");
+		ft_exit(NULL, NULL, ERROR_FILE);
 	if (!ft_check_map(map, fd))
-		ft_exit(*map, NULL, "Error: Malloc fail"); // Il faut change ce message (close or malloc)
+		ft_exit(*map, NULL, ERROR_MALLOC); // Il faut changer(close or malloc)
 	game = (void *)malloc(sizeof(t_game)); //liberer
 	if (!game)
-		ft_exit(*map, NULL, "Error: Malloc fail");
+		ft_exit(*map, NULL, ERROR_MALLOC);
 	game->head_map = map;
 	display_init(game);
 	ft_map_is_valid(game, game->head_map);
 	// Tout est bon
 	display_the_map(game);
-	// free_game(game);
 	ft_exit(*map, game, "");
+	return (0);
 }
 
-//--leak-check=full --show-leak-kinds=
+//--leak-check=full --show-leak-kinds=all
 
 //mlx_xpm_file_to_image
 //mlx_hook pour gerer les event et fermer la fenetre
 //mlx_put_image_to_window
+
+
+// main 
+// - declaration var(game, data)
+// - init structure
+// - check validite maps / parsing 
+// - fonctions
+// - [...]
+// - exit {MSG DISPLAY, FREE MEMORY, EXIT BON CODE}

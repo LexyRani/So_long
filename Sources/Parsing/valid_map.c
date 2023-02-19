@@ -6,7 +6,7 @@
 /*   By: aceralin <aceralin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/31 21:27:43 by aceralin          #+#    #+#             */
-/*   Updated: 2023/02/18 19:38:02 by aceralin         ###   ########.fr       */
+/*   Updated: 2023/02/19 14:20:19 by aceralin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,12 +74,12 @@ int	is_not_wall_framed(t_map **map)
 	return(0);
 }
 
-// static int	valid_char(char c)
-// {
-// 	if (c == '0' || c == 'E' || c == '1' || c == 'C' || c == 'P')
-// 		return (0);
-// 	return (1);
-// }
+static int	valid_char(char c)
+{
+	if (c == '0' || c == 'E' || c == '1' || c == 'C' || c == 'P')
+		return (0);
+	return (1);
+}
 
 int	is_bad_char(t_map **map)
 {
@@ -92,18 +92,18 @@ int	is_bad_char(t_map **map)
 		i = 0;
 		while(tmp->line[i])
 		{	
-			if(tmp->line[i] != '0' && tmp->line[i] != 'E' &&
-				 tmp->line[i] != '1' && tmp->line[i] != 'C' &&
-				 tmp->line[i] != 'P')
+			/*if(tmp->line[i] != '0' && tmp->line[i] != 'E' &&
+				tmp->line[i] != '1' && tmp->line[i] != 'C' &&
+				tmp->line[i] != 'P')
 			{
 				printf("%d\n", tmp->line[i]);
 				return(1);	
-			}
-			// if(valid_char(tmp->line[i]))
-			// {
+			}*/
+			if(valid_char(tmp->line[i]))
+			{
 			// 	printf("here %d\n", tmp->line[i]);
-			// 	return(1);	
-			// }
+				return(1);	
+			}
 			i++;
 		}
 		tmp = tmp->next;

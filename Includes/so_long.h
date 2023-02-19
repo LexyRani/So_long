@@ -6,7 +6,7 @@
 /*   By: aceralin <aceralin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/27 13:20:27 by aceralin          #+#    #+#             */
-/*   Updated: 2023/02/18 19:50:01 by aceralin         ###   ########.fr       */
+/*   Updated: 2023/02/19 14:29:26 by aceralin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,14 @@
 #  define BUFFER_SIZE 42
 # endif
 
+#define ERROR_ARG "Error: there must be only two arguments \
+([./so_long] [path_map.ber])"
+#define ERROR_EXT "Error: Your file is not .ber"
+#define ERROR_FILE "Error: to open the file"
+#define ERROR_MALLOC "Error: Malloc fail"
+//#define ERROR "Error: Malloc or close fail"
+//#define 
+  
 typedef struct s_coordinate
 {
 	int y;
