@@ -6,7 +6,7 @@
 /*   By: aceralin <aceralin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/16 21:11:40 by aceralin          #+#    #+#             */
-/*   Updated: 2023/02/19 19:15:06 by aceralin         ###   ########.fr       */
+/*   Updated: 2023/02/19 19:28:25 by aceralin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,63 +31,6 @@ void	get_count(t_game *game)
 		}
 		i++;
 	}
-}
-
-void	ft_move_right(t_game *game)
-{
-	game->x = game->x + 1;
-	if (game->map_game[game->y][game->x] != '1')
-	{
-		if (game->map_game[game->y][game->x] == 'E')
-		{
-			game->count_e--;
-			if (game->count_c == 0)
-			{
-				game->move++;
-				ft_putnbr_fd(game->move, 1);
-				ft_putstr_fd("\n", 1);
-				ft_close(game);
-			}
-			game->map_game[game->y][game->x] = 'P';
-			game->map_game[game->y][game->x - 1] = '0';
-			mlx_put_image_to_window(game->mlx_ptr, game->win_ptr, game->img_player, game->x * 50,game->y * 50);
-			mlx_put_image_to_window(game->mlx_ptr, game->win_ptr, game->img_floor, game->x * 50, game->y * 50);
-		}
-		else if (game->map_game[game->y][game->x] == 'C')
-		{
-			game->count_c--;
-			game->map_game[game->y][game->x] = 'P';
-			if (game->count_e == 0)
-			{
-				game->map_game[game->y][game->x - 1] = 'E';
-				game->count_e++;
-			}
-			else
-				game->map_game[game->y][game->x - 1] = '0';
-			mlx_put_image_to_window(game->mlx_ptr, game->win_ptr, game->img_player, game->x * 50,game->y * 50);
-			mlx_put_image_to_window(game->mlx_ptr, game->win_ptr, game->img_floor, game->x * 50, game->y * 50);
-		}
-		else if (game->map_game[game->y][game->x] == '0')
-		{
-			if (game->count_e == 0)
-			{
-				game->map_game[game->y][game->x] = 'P';
-				game->map_game[game->y][game->x - 1] = 'E';
-				mlx_put_image_to_window(game->mlx_ptr, game->win_ptr, game->img_exit, (game->x - 1) * 50,game->y * 50);
-				game->count_e++;
-			}
-			else
-			{
-				game->map_game[game->y][game->x] = 'P';
-				game->map_game[game->y][game->x - 1] = '0';
-				mlx_put_image_to_window(game->mlx_ptr, game->win_ptr, game->img_player, game->x * 50,game->y * 50);
-				mlx_put_image_to_window(game->mlx_ptr, game->win_ptr, game->img_floor, game->x * 50, game->y * 50);
-			}
-		}
-		game->move++;
-		ft_putnbr_fd(game->move, 1);
-		ft_putstr_fd("\n", 1);
-	}	
 }
 
 void	ft_move_down(t_game *game)

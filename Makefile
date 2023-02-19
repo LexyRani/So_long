@@ -21,6 +21,7 @@ SRCS += Sources/Game/init.c
 SRCS += Sources/Game/len_tab.c
 SRCS += Sources/Game/move.c
 SRCS += Sources/Game/move_left.c
+SRCS += Sources/Game/move_right.c
 
 #******************************************************************************#
 #*									ERRORS  								  *#
