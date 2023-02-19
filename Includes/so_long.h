@@ -6,63 +6,65 @@
 /*   By: aceralin <aceralin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/27 13:20:27 by aceralin          #+#    #+#             */
-/*   Updated: 2023/02/19 14:29:26 by aceralin         ###   ########.fr       */
+/*   Updated: 2023/02/19 18:33:39 by aceralin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef SO_LONG_H
-#define SO_LONG_H
+# define SO_LONG_H
 
-#include <sys/types.h>
-#include <sys/stat.h>
-#include <fcntl.h>
-#include <stdio.h>
-#include <unistd.h>
-#include <stdlib.h>
-#include <string.h>
-#include "../mlx/mlx.h"
-#include <X11/keysym.h>
+# include <sys/types.h>
+# include <sys/stat.h>
+# include <fcntl.h>
+# include <stdio.h>
+# include <unistd.h>
+# include <stdlib.h>
+# include <string.h>
+# include "../mlx/mlx.h"
+# include <X11/keysym.h>
+
 /* BUFFER*/
 # ifndef BUFFER_SIZE
 #  define BUFFER_SIZE 42
 # endif
 
-#define ERROR_ARG "Error: there must be only two arguments \
+# define ERROR_ARG "Error: there must be only two arguments \
 ([./so_long] [path_map.ber])"
-#define ERROR_EXT "Error: Your file is not .ber"
-#define ERROR_FILE "Error: to open the file"
-#define ERROR_MALLOC "Error: Malloc fail"
+# define ERROR_EXT "Error: Your file is not .ber"
+# define ERROR_FILE "Error: to open the file"
+# define ERROR_MALLOC "Error: Malloc fail"
+# define ERROR_EMPTY "Error: map is empty"
+# define ERROR_REC "Error: map is not rectangle"
+# define ERROR_CHAR "Error: char must be 0, 1, E, P, C"
+# define ERROR_WALL "Error: map is missing wall"
+# define ERROR_PATH "Error: map is not a valid path"
+
 //#define ERROR "Error: Malloc or close fail"
 //#define 
-  
 typedef struct s_coordinate
 {
-	int y;
-	int x;	
+	int	y;
+	int	x;	
 }		t_coordinate;
 
-typedef struct s_count // compteur
+typedef struct s_count
 {
-			int	p; //compteur 
-			int	e; //compteur
-			int	c; //compteur
-			
-}			t_count; 
+	int	p;
+	int	e;
+	int	c;
+}			t_count;
 
-typedef struct s_map //map
+typedef struct s_map
 {
-			char	*line;
-			int		index;
-			struct s_map	*prev;
-			struct s_map	*next;
+	char			*line;
+	int				index;
+	struct s_map	*prev;
+	struct s_map	*next;
 }						t_map;
 
-
-typedef struct s_game //game
+typedef struct s_game
 {
 	t_map	**head_map;
-	//t_map	*head_map_cp;//Parsing copy_map
-	//t_map	**map;
 	char	**map_game;
 	int		x;
 	int		y;
@@ -77,7 +79,7 @@ typedef struct s_game //game
 	int		count_e;
 	int		count_c;
 	int		move;
-} 			t_game;
+}			t_game;
 
 /******************************************************************************/
 /*									PARSING	  								  */
@@ -86,21 +88,23 @@ typedef struct s_game //game
 int			ft_arg_is_not_ber(char *s1, char *extension);
 int			ft_check_map(t_map **map, int fd);
 
-/*_____/VALID MAP\______*/
-void		ft_map_is_valid(t_game *game, t_map **map);
-int			is_not_rectangle(t_map **map);
+/*_____/VALID MAP_1\______*/
 int			is_not_wall_framed(t_map **map);
+int			valid_char(char c);
+int			is_bad_char(t_map **map);
+
+/*_____/VALID MAP_2\______*/
 int			check_middle(t_map *map);
 int			is_all_one( t_map *map);
+int			is_not_rectangle(t_map **map);
+void		ft_map_is_valid(t_game *game, t_map **map);
 
-/*______/VALID MAP\_____*/
-//void		ft_init_count(t_count	count);
-int			is_not_valid_count(t_map **map,t_count *count);
+/*______/VALID PATH\_____*/
+int			is_not_valid_count(t_map **map, t_count *count);
 int			change_nextp(char **map, t_count *count, t_coordinate *coor);
-int 		is_what_kind(char tmp, t_count *count);
-//int			change_c_to_p_i(t_map *map, t_count *count, int i,char c);
-//int			change_c_to_p_np(t_map *map, t_count *count, int i, char c);
+int			is_what_kind(char tmp, t_count *count);
 int			is_not_valid_path(t_game *game, t_map **map, t_count *count);
+
 /******************************************************************************/
 /*									GET_NEXT_LINE	  						  */
 /******************************************************************************/
@@ -119,7 +123,7 @@ void		*ft_memcpy(void *dest, const void *src, size_t n);
 void		free_map(t_map *map);
 int			free_game(t_game *game);
 int			ft_close(t_game *s_game);
-void   		ft_exit(t_map *map, t_game *game, char *msg);
+void		ft_exit(t_map *map, t_game *game, char *msg);
 /******************************************************************************/
 /*									UTILS	  								  */
 /******************************************************************************/
@@ -133,37 +137,37 @@ t_map		*ft_lstlast(t_map *lst);
 void		ft_lstadd_back(t_map **lst, t_map *new);
 char		*ft_strdup_without_nl(const char *s);
 int			ft_lstsize(t_map *lst);
-
+void		ft_putnbr_fd(int n, int fd);
 /******************************************************************************/
 /*									GAME	  								  */
 /******************************************************************************/
 
 /*_______/GAME\______*/
-int		put_images(t_game *game);
-void	display_the_map(t_game *game);
-void	get_count(t_game *game);
+int			put_images(t_game *game);
+void		display_the_map(t_game *game);
+void		get_count(t_game *game);
 
 //void	put_images(t_game *game);
-void	*ft_convert_to_img(char *img, t_game *data);
+void		*ft_convert_to_img(char *img, t_game *data);
 
 /*_______/INIT\_______*/
-void	image_init(t_game *game);
-void	display_init(t_game *game);
+void		image_init(t_game *game);
+void		display_init(t_game *game);
 
 /*_______/LEN_TAB\______*/
 
-int		ft_len(char *s);
-int		ft_len_tab(char **s);
+int			ft_len(char *s);
+int			ft_len_tab(char **s);
 
 /*______/PRINT_MAP\_____*/
-int		print_map(t_map *tmp);
-void print_double_array(char **array);
+//int	print_map(t_map *tmp);
+//void 	print_double_array(char **array);
 /******************************************************************************/
 /*									MOVE	  								  */
 /******************************************************************************/
 
-int	ft_key_move( int key, t_game *game);
-void	player_position(t_game *game);
-void ft_move_up(t_game *game);
+int			ft_key_move( int key, t_game *game);
+void		player_position(t_game *game);
+void		ft_move_up(t_game *game);
 
 #endif

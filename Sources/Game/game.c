@@ -6,7 +6,7 @@
 /*   By: aceralin <aceralin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/09 14:40:38 by aceralin          #+#    #+#             */
-/*   Updated: 2023/02/19 15:24:42 by aceralin         ###   ########.fr       */
+/*   Updated: 2023/02/19 18:01:56 by aceralin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,11 +15,13 @@
 void	*ft_convert_to_img(char *img, t_game *data)
 {
 	void	*img_ptr;
-	int len  = 50;
-	int width = 50;
+	int		len;
+	int		width;
 
+	len = 50;
+	width = 50;
 	img_ptr = mlx_xpm_file_to_image(data->mlx_ptr, img, &width, &len);
-	if(!img_ptr)//
+	if (!img_ptr)
 		ft_close(data);
 	return (img_ptr);
 }
@@ -52,32 +54,29 @@ int	put_images(t_game *game)
 	return (0);
 }
 
-void    display_the_map(t_game *game)
+void	display_the_map(t_game *game)
 {
-	int x;
-	int y;
-	int length;
-	int width;
+	int	x;
+	int	y;
+	int	length;
+	int	width;
 
-	// y = 0;
-	// x = 0;
 	x = ft_len(game->map_game[0]);
 	y = ft_len_tab(game->map_game);
-    game->mlx_ptr = mlx_init();
+	game->mlx_ptr = mlx_init();
 	if (!game->mlx_ptr)
 		ft_close(game);
 	mlx_get_screen_size(game->mlx_ptr, &length, &width);
-	//printf("length = %d - width =%d\n", width, length);
-	if(x * 50 > length || y * 50 > length)
+	if (x * 50 > length || y * 50 > length)
 		ft_exit(NULL, game, "Error: the map is too big for the screen");
 	game->win_ptr = mlx_new_window(game->mlx_ptr, x * 50 , y * 50 , "LA CASA DE PAPEL");
-	if(!game->win_ptr)
+	if (!game->win_ptr)
 		ft_close(game);
 	image_init(game);
 	put_images(game);
 	get_count(game);
-	mlx_hook(game->win_ptr, 2 , 1L<<0, ft_key_move, game);
+	mlx_hook(game->win_ptr, 2, 1L << 0, ft_key_move, game);
 	mlx_hook(game->win_ptr, 17, (1L << 17), ft_close, game);
 	mlx_loop_hook(game->mlx_ptr, put_images, game);
-  	mlx_loop(game->mlx_ptr);
+	mlx_loop(game->mlx_ptr);
 }

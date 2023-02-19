@@ -6,7 +6,7 @@
 /*   By: aceralin <aceralin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/27 15:11:39 by aceralin          #+#    #+#             */
-/*   Updated: 2023/02/19 15:27:18 by aceralin         ###   ########.fr       */
+/*   Updated: 2023/02/19 17:50:24 by aceralin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,11 +16,12 @@ void	ft_exit(t_map *map, t_game *game, char *msg)
 {
 	t_map	*head_map_aux;
 	t_map	*tmp;
-	int 	i;
+	int		i;
 	(void)map;
+
 	if (game)
 	{
-		if (game->map_game)//
+		if (game->map_game)
 		{
 			i = 0;
 			while (game->map_game[i])
@@ -41,26 +42,10 @@ void	ft_exit(t_map *map, t_game *game, char *msg)
 				free(tmp->line);
 				free(tmp);
 			}
-		}
-		
+		}	
 		free_game(game);
 		game = NULL;
 	}
-	// if (!game)
-	// {
-	// 	printf("Here\n");
-	// 	if (map)
-	// 	{
-	// 		printf("Here\n");
-	// 		while (map)
-	// 		{
-	// 			tmp = map;
-	// 			map = map->next;
-	// 			free(tmp->line);
-	// 			free(tmp);
-	// 		}
-	// 	}
-	// }
 	if (msg)
 		ft_putendl_fd(msg, 2);
 	exit(EXIT_FAILURE);
@@ -69,7 +54,7 @@ void	ft_exit(t_map *map, t_game *game, char *msg)
 void	free_map(t_map *map)
 {
 	t_map	*tmp;
-	
+
 	while (map)
 	{
 		tmp = map;
@@ -91,9 +76,8 @@ int	free_game(t_game *game)
 	return (1);
 }
 
-int		ft_close(t_game *game)
+int	ft_close(t_game *game)
 {
-	// mlx_clear_window(game->mlx_ptr, game->win_ptr);
 	if (game->mlx_ptr)
 		mlx_loop_end(game->mlx_ptr);
 	if (game->mlx_ptr && game->img_coin)
@@ -105,7 +89,7 @@ int		ft_close(t_game *game)
 	if (game->mlx_ptr && game->img_player)
 		mlx_destroy_image(game->mlx_ptr, game->img_player);
 	if (game->mlx_ptr && game->img_wall)
-		mlx_destroy_image(game->mlx_ptr, game->img_wall);	
+		mlx_destroy_image(game->mlx_ptr, game->img_wall);
 	if (game->mlx_ptr && game->win_ptr)
 		mlx_destroy_window(game->mlx_ptr, game->win_ptr);
 	if (game->mlx_ptr)

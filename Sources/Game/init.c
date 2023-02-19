@@ -6,7 +6,7 @@
 /*   By: aceralin <aceralin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/16 21:19:19 by aceralin          #+#    #+#             */
-/*   Updated: 2023/02/18 17:03:24 by aceralin         ###   ########.fr       */
+/*   Updated: 2023/02/19 18:06:59 by aceralin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,15 +15,15 @@
 void	image_init(t_game *data)
 {
 	data->img_coin = ft_convert_to_img("./Sources/Images/coin.xpm", data);
-	data->img_wall = ft_convert_to_img("./Sources/Images/walls.xpm",data);
+	data->img_wall = ft_convert_to_img("./Sources/Images/walls.xpm", data);
 	data->img_exit = ft_convert_to_img("./Sources/Images/banque.xpm", data);
 	data->img_player = ft_convert_to_img("./Sources/Images/players.xpm", data);
-	data->img_floor = ft_convert_to_img("./Sources/Images/black_shape.xpm", data);
+	data->img_floor = ft_convert_to_img("./Sources/Images/black.xpm", data);
 }
 
 void	display_init(t_game *game)
 {
-	game->map_game = NULL;//
+	game->map_game = NULL;
 	game->mlx_ptr = NULL;
 	game->img = NULL ;
 	game->win_ptr = NULL;

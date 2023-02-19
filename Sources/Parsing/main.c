@@ -6,7 +6,7 @@
 /*   By: aceralin <aceralin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/27 13:20:07 by aceralin          #+#    #+#             */
-/*   Updated: 2023/02/19 15:16:55 by aceralin         ###   ########.fr       */
+/*   Updated: 2023/02/19 16:30:12 by aceralin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,32 +56,24 @@ int	main(int argc, char *argv[])
 	if (argc != 2)
 		ft_exit(NULL, NULL, ERROR_ARG);
 	if ((ft_arg_is_not_ber(argv[1], ".ber")))
-		ft_exit(NULL, NULL, ERROR_ARG);
+		ft_exit(NULL, NULL, ERROR_EXT);
 	lst = NULL;
 	map = &lst;
 	fd = open(argv[1], O_RDONLY);
 	if (fd == -1)
 		ft_exit(NULL, NULL, ERROR_FILE);
 	if (!ft_check_map(map, fd))
-		ft_exit(*map, NULL, ERROR_MALLOC); // Il faut changer(close or malloc)
-	game = (void *)malloc(sizeof(t_game)); //liberer
+		ft_exit(*map, NULL, ERROR_MALLOC);
+	game = (void *)malloc(sizeof(t_game));
 	if (!game)
 		ft_exit(*map, NULL, ERROR_MALLOC);
 	game->head_map = map;
 	display_init(game);
 	ft_map_is_valid(game, game->head_map);
-	// Tout est bon
 	display_the_map(game);
 	ft_exit(*map, game, "");
 	return (0);
 }
-
-//--leak-check=full --show-leak-kinds=all
-
-//mlx_xpm_file_to_image
-//mlx_hook pour gerer les event et fermer la fenetre
-//mlx_put_image_to_window
-
 
 // main 
 // - declaration var(game, data)
@@ -90,3 +82,4 @@ int	main(int argc, char *argv[])
 // - fonctions
 // - [...]
 // - exit {MSG DISPLAY, FREE MEMORY, EXIT BON CODE}
+//--leak-check=full --show-leak-kinds=all
