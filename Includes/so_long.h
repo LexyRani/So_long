@@ -6,7 +6,7 @@
 /*   By: aceralin <aceralin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/27 13:20:27 by aceralin          #+#    #+#             */
-/*   Updated: 2023/02/19 18:33:39 by aceralin         ###   ########.fr       */
+/*   Updated: 2023/02/19 19:20:43 by aceralin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -170,4 +170,9 @@ int			ft_key_move( int key, t_game *game);
 void		player_position(t_game *game);
 void		ft_move_up(t_game *game);
 
+/*left*/
+void		move_if_c_left(t_game *game);	
+void		move_if_0_left(t_game *game);
+void		move_if_e_left(t_game *game);
+void		ft_move_left(t_game *game);
 #endif
