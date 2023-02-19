@@ -6,7 +6,7 @@
 /*   By: aceralin <aceralin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/27 13:20:27 by aceralin          #+#    #+#             */
-/*   Updated: 2023/02/19 19:43:23 by aceralin         ###   ########.fr       */
+/*   Updated: 2023/02/19 19:54:47 by aceralin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -182,5 +182,12 @@ void		move_if_c_rigth(t_game *game);
 void		move_if_0_right(t_game *game);
 void		move_if_e_right(t_game *game);
 void		ft_move_right(t_game *game);
+
+/*down*/
+
+void		move_if_c_down(t_game *game);	
+void		move_if_0_down(t_game *game);
+void		move_if_e_down(t_game *game);
+void		ft_move_down(t_game *game);
 
 #endif
