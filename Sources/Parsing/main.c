@@ -6,7 +6,7 @@
 /*   By: aceralin <aceralin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/27 13:20:07 by aceralin          #+#    #+#             */
-/*   Updated: 2023/02/19 16:30:12 by aceralin         ###   ########.fr       */
+/*   Updated: 2023/02/20 01:10:48 by aceralin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,6 @@ int	ft_check_map(t_map **map, int fd)
 int	main(int argc, char *argv[])
 {
 	t_map	**map;
-	int		fd;
 	t_game	*game;
 	t_map	*lst;
 
@@ -59,13 +58,13 @@ int	main(int argc, char *argv[])
 		ft_exit(NULL, NULL, ERROR_EXT);
 	lst = NULL;
 	map = &lst;
-	fd = open(argv[1], O_RDONLY);
-	if (fd == -1)
-		ft_exit(NULL, NULL, ERROR_FILE);
-	if (!ft_check_map(map, fd))
-		ft_exit(*map, NULL, ERROR_MALLOC);
 	game = (void *)malloc(sizeof(t_game));
 	if (!game)
+		ft_exit(*map, NULL, ERROR_MALLOC);
+	game->fd = open(argv[1], O_RDONLY);
+	if (game->fd == -1)
+		ft_exit(NULL, NULL, ERROR_FILE);
+	if (!ft_check_map(map, game->fd))
 		ft_exit(*map, NULL, ERROR_MALLOC);
 	game->head_map = map;
 	display_init(game);
@@ -74,12 +73,3 @@ int	main(int argc, char *argv[])
 	ft_exit(*map, game, "");
 	return (0);
 }
-
-// main 
-// - declaration var(game, data)
-// - init structure
-// - check validite maps / parsing 
-// - fonctions
-// - [...]
-// - exit {MSG DISPLAY, FREE MEMORY, EXIT BON CODE}
-//--leak-check=full --show-leak-kinds=all

@@ -6,12 +6,11 @@
 /*   By: aceralin <aceralin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/19 20:36:19 by aceralin          #+#    #+#             */
-/*   Updated: 2023/02/19 20:42:00 by aceralin         ###   ########.fr       */
+/*   Updated: 2023/02/20 01:10:12 by aceralin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../Includes/so_long.h"
-
 
 void	move_if_c_up(t_game *game)
 {

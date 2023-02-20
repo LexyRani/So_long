@@ -6,25 +6,11 @@
 /*   By: aceralin <aceralin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/02 13:44:45 by aceralin          #+#    #+#             */
-/*   Updated: 2023/02/20 00:07:00 by aceralin         ###   ########.fr       */
+/*   Updated: 2023/02/20 01:12:12 by aceralin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../Includes/so_long.h"
-
-/*void	print_double_array(char **array)
-{
-	int	i;
-
-	i = 0;
-	if (!*array)
-		return;
-	while (array[i])
-	{
-		printf("%s\n", array[i]);
-		i++;
-	}
-}*/
 
 int	is_not_valid_count(t_map **map, t_count *count)
 {
@@ -116,3 +102,17 @@ int	is_not_valid_path(t_game *game, t_map **map, t_count *count)
 	ft_free_double_tab(map_created);
 	return (0);
 }
+
+/*void	print_double_array(char **array)
+{
+	int	i;
+
+	i = 0;
+	if (!*array)
+		return;
+	while (array[i])
+	{
+		printf("%s\n", array[i]);
+		i++;
+	}
+}*/

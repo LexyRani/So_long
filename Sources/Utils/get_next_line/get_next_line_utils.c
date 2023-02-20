@@ -6,12 +6,11 @@
 /*   By: aceralin <aceralin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/24 17:34:53 by aceralin          #+#    #+#             */
-/*   Updated: 2023/01/27 18:18:42 by aceralin         ###   ########.fr       */
+/*   Updated: 2023/02/20 00:31:06 by aceralin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../../Includes/so_long.h"
-
 
 void	*ft_memcpy(void *dest, const void *src, size_t n)
 {
