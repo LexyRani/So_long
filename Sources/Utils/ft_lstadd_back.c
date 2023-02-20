@@ -6,13 +6,12 @@
 /*   By: aceralin <aceralin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/31 14:51:30 by aceralin          #+#    #+#             */
-/*   Updated: 2023/02/15 13:19:32 by aceralin         ###   ########.fr       */
+/*   Updated: 2023/02/20 11:13:36 by aceralin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../Includes/so_long.h"
 
-// ajout de l'index et initialisation de prev au dernier element de la liste. 
 void	ft_lstadd_back(t_map **lst, t_map *new)
 {
 	if (*lst)

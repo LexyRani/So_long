@@ -6,7 +6,7 @@
 /*   By: aceralin <aceralin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/02 13:44:45 by aceralin          #+#    #+#             */
-/*   Updated: 2023/02/20 01:12:12 by aceralin         ###   ########.fr       */
+/*   Updated: 2023/02/20 12:57:20 by aceralin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,6 @@ int	is_not_valid_count(t_map **map, t_count *count)
 		}
 		tmp = tmp->next;
 	}
-	printf("%d\n", count->c);
 	if (count->c <= 0 || count->p == 0 || count->e == 0)
 		return (1);
 	return (0);

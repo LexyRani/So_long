@@ -6,7 +6,7 @@
 /*   By: aceralin <aceralin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/09 14:40:38 by aceralin          #+#    #+#             */
-/*   Updated: 2023/02/20 00:25:21 by aceralin         ###   ########.fr       */
+/*   Updated: 2023/02/20 15:05:39 by aceralin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,6 +64,14 @@ int	put_images(t_game *game)
 	return (0);
 }
 
+void	mlx_display_game(t_game *game)
+{
+	mlx_hook(game->win_ptr, 2, 1L << 0, ft_key_move, game);
+	mlx_hook(game->win_ptr, 17, (1L << 17), ft_close, game);
+	mlx_loop_hook(game->mlx_ptr, put_images, game);
+	mlx_loop(game->mlx_ptr);
+}
+
 void	display_the_map(t_game *game)
 {
 	int	x;
@@ -77,8 +85,11 @@ void	display_the_map(t_game *game)
 	if (!game->mlx_ptr)
 		ft_close(game);
 	mlx_get_screen_size(game->mlx_ptr, &length, &width);
-	if (x * 50 > length || y * 50 > length)
+	if (x * 50 > length || y * 50 > width)
+	{
+		ft_clean_mlx(game);
 		ft_exit(NULL, game, "Error: the map is too big for the screen");
+	}
 	game->win_ptr = mlx_new_window(game->mlx_ptr,
 			x * 50, y * 50, "LA CASA DE PAPEL");
 	if (!game->win_ptr)
@@ -86,8 +97,5 @@ void	display_the_map(t_game *game)
 	image_init(game);
 	put_images(game);
 	get_count(game);
-	mlx_hook(game->win_ptr, 2, 1L << 0, ft_key_move, game);
-	mlx_hook(game->win_ptr, 17, (1L << 17), ft_close, game);
-	mlx_loop_hook(game->mlx_ptr, put_images, game);
-	mlx_loop(game->mlx_ptr);
+	mlx_display_game(game);
 }

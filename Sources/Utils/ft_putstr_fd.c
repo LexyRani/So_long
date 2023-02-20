@@ -6,7 +6,7 @@
 /*   By: aceralin <aceralin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/19 12:58:16 by aceralin          #+#    #+#             */
-/*   Updated: 2023/02/19 18:33:08 by aceralin         ###   ########.fr       */
+/*   Updated: 2023/02/20 11:12:40 by aceralin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,5 +70,5 @@ int	ft_strcmp(char *s1, char *s2)
 	{
 		i++;
 	}
-	return (s1[i]-s2[i]);
+	return (s1[i] - s2[i]);
 }

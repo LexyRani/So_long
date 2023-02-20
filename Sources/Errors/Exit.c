@@ -6,7 +6,7 @@
 /*   By: aceralin <aceralin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/27 15:11:39 by aceralin          #+#    #+#             */
-/*   Updated: 2023/02/20 01:05:14 by aceralin         ###   ########.fr       */
+/*   Updated: 2023/02/20 15:01:44 by aceralin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,8 +42,8 @@ void	ft_exit(t_map *map, t_game *game, char *msg)
 		if (game->head_map)
 		{
 			head_map_aux = *game->head_map;
-			free_for_chained_list(head_map_aux);
-		}	
+			free_for_chained_list(*game->head_map);
+		}
 		free_game(game);
 		game = NULL;
 	}
@@ -79,22 +79,7 @@ int	free_game(t_game *game)
 
 int	ft_close(t_game *game)
 {
-	if (game->mlx_ptr)
-		mlx_loop_end(game->mlx_ptr);
-	if (game->mlx_ptr && game->img_coin)
-		mlx_destroy_image(game->mlx_ptr, game->img_coin);
-	if (game->mlx_ptr && game->img_exit)
-		mlx_destroy_image(game->mlx_ptr, game->img_exit);
-	if (game->mlx_ptr && game->img_floor)
-		mlx_destroy_image(game->mlx_ptr, game->img_floor);
-	if (game->mlx_ptr && game->img_player)
-		mlx_destroy_image(game->mlx_ptr, game->img_player);
-	if (game->mlx_ptr && game->img_wall)
-		mlx_destroy_image(game->mlx_ptr, game->img_wall);
-	if (game->mlx_ptr && game->win_ptr)
-		mlx_destroy_window(game->mlx_ptr, game->win_ptr);
-	if (game->mlx_ptr)
-		mlx_destroy_display(game->mlx_ptr);
-	ft_exit (NULL, game, "");
+	ft_clean_mlx(game);
+	ft_exit (NULL, game, NULL);
 	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: aceralin <aceralin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/27 13:20:07 by aceralin          #+#    #+#             */
-/*   Updated: 2023/02/20 01:10:48 by aceralin         ###   ########.fr       */
+/*   Updated: 2023/02/20 14:56:13 by aceralin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,13 +61,13 @@ int	main(int argc, char *argv[])
 	game = (void *)malloc(sizeof(t_game));
 	if (!game)
 		ft_exit(*map, NULL, ERROR_MALLOC);
+	display_init(game);
 	game->fd = open(argv[1], O_RDONLY);
 	if (game->fd == -1)
-		ft_exit(NULL, NULL, ERROR_FILE);
+		ft_exit(NULL, game, ERROR_FILE);
 	if (!ft_check_map(map, game->fd))
-		ft_exit(*map, NULL, ERROR_MALLOC);
+		ft_exit(*map, game, ERROR_MALLOC);
 	game->head_map = map;
-	display_init(game);
 	ft_map_is_valid(game, game->head_map);
 	display_the_map(game);
 	ft_exit(*map, game, "");

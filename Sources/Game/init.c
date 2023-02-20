@@ -6,7 +6,7 @@
 /*   By: aceralin <aceralin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/16 21:19:19 by aceralin          #+#    #+#             */
-/*   Updated: 2023/02/19 18:06:59 by aceralin         ###   ########.fr       */
+/*   Updated: 2023/02/20 14:06:42 by aceralin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,8 +24,9 @@ void	image_init(t_game *data)
 void	display_init(t_game *game)
 {
 	game->map_game = NULL;
+	game->head_map = NULL;
 	game->mlx_ptr = NULL;
-	game->img = NULL ;
+	game->img = NULL;
 	game->win_ptr = NULL;
 	game->img_coin = 0;
 	game->img_exit = 0;
@@ -36,3 +37,5 @@ void	display_init(t_game *game)
 	game->count_e = 0;
 	game->move = 0;
 }
+
+// ft_memset(&game, 0, sizeof(game)); //

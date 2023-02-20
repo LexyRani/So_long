@@ -6,7 +6,7 @@
 /*   By: aceralin <aceralin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/27 13:20:27 by aceralin          #+#    #+#             */
-/*   Updated: 2023/02/20 00:55:02 by aceralin         ###   ########.fr       */
+/*   Updated: 2023/02/20 15:01:28 by aceralin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -139,6 +139,8 @@ void		free_map(t_map *map);
 int			free_game(t_game *game);
 int			ft_close(t_game *s_game);
 void		ft_exit(t_map *map, t_game *game, char *msg);
+/*destroy*/
+int			ft_clean_mlx(t_game *game);
 /******************************************************************************/
 /*									UTILS	  								  */
 /******************************************************************************/
@@ -153,6 +155,7 @@ void		ft_lstadd_back(t_map **lst, t_map *new);
 char		*ft_strdup_without_nl(const char *s);
 int			ft_lstsize(t_map *lst);
 void		ft_putnbr_fd(int n, int fd);
+
 /******************************************************************************/
 /*									GAME	  								  */
 /******************************************************************************/
