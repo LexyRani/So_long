@@ -6,7 +6,7 @@
 /*   By: aceralin <aceralin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/27 13:20:27 by aceralin          #+#    #+#             */
-/*   Updated: 2023/02/20 15:01:28 by aceralin         ###   ########.fr       */
+/*   Updated: 2023/02/20 15:25:04 by aceralin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,20 +90,20 @@ int			ft_arg_is_not_ber(char *s1, char *extension);
 int			ft_check_map(t_map **map, int fd);
 
 /*_____/VALID MAP_1\______*/
-int			is_not_wall_framed(t_map **map);
 int			valid_char(char c);
 int			is_bad_char(t_map **map);
+void		ft_map_is_valid(t_game *game, t_map **map);
 
 /*_____/VALID MAP_2\______*/
 int			check_middle(t_map *map);
 int			is_all_one( t_map *map);
 int			is_not_rectangle(t_map **map);
-void		ft_map_is_valid(t_game *game, t_map **map);
+int			is_not_wall_framed(t_map **map);
 
 /*______/VALID PATH\_____*/
+int			while_map( char **map, t_count *count);
 int			is_not_valid_count(t_map **map, t_count *count);
 int			change_nextp(char **map, t_count *count, t_coord *coor);
-int			is_what_kind(char tmp, t_count *count);
 int			is_not_valid_path(t_game *game, t_map **map, t_count *count);
 
 /*______/VALID PATH2\_____*/
@@ -119,7 +119,7 @@ void		to_up(char **map, t_count *count, t_coord *coor, char c);
 char		**copy_array(char **array, t_map **map);
 char		**make_array_chain(t_map **map);
 void		ft_free_double_tab(char **tab);
-
+int			is_what_kind(char tmp, t_count *count);
 /******************************************************************************/
 /*									GET_NEXT_LINE	  						  */
 /******************************************************************************/
@@ -138,6 +138,7 @@ void		*ft_memcpy(void *dest, const void *src, size_t n);
 void		free_map(t_map *map);
 int			free_game(t_game *game);
 int			ft_close(t_game *s_game);
+void		free_for_chained_list( t_map *head_map_aux);
 void		ft_exit(t_map *map, t_game *game, char *msg);
 /*destroy*/
 int			ft_clean_mlx(t_game *game);
@@ -163,17 +164,15 @@ void		ft_putnbr_fd(int n, int fd);
 /*_______/GAME\______*/
 int			put_images(t_game *game);
 void		display_the_map(t_game *game);
-void		get_count(t_game *game);
-
-//void	put_images(t_game *game);
+void		mlx_display_game(t_game *game);
 void		*ft_convert_to_img(char *img, t_game *data);
+void		put_image_to_window(t_game *game, int x, int y);
 
 /*_______/INIT\_______*/
 void		image_init(t_game *game);
 void		display_init(t_game *game);
 
 /*_______/LEN_TAB\______*/
-
 int			ft_len(char *s);
 int			ft_len_tab(char **s);
 
@@ -186,7 +185,7 @@ int			ft_len_tab(char **s);
 
 int			ft_key_move( int key, t_game *game);
 void		player_position(t_game *game);
-
+void		get_count(t_game *game);
 /*left*/
 void		move_if_c_left(t_game *game);	
 void		move_if_0_left(t_game *game);
